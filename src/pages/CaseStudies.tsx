@@ -1,10 +1,29 @@
 ﻿import { Link } from "react-router-dom"
+import { Helmet } from "react-helmet-async"
 import { caseStudies } from "../data/caseStudies"
 import type { CaseStudy } from "../data/caseStudies"
+import { SITE_URL, SITE_OG_IMAGE, SITE_TWITTER_HANDLE } from "../seo"
 
 export default function CaseStudies() {
+    const title = "Case Studies | Greg Homstad"
+    const description = "Enterprise case studies demonstrating end-to-end product ownership across SAP reporting, financial compliance, and platform modernization."
+
     return (
         <section className="pt-28 pb-24 px-6">
+            <Helmet>
+                <title>{title}</title>
+                <meta name="description" content={description} />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={`${SITE_URL}/case-studies`} />
+                <meta property="og:title" content={title} />
+                <meta property="og:description" content={description} />
+                <meta property="og:image" content={SITE_OG_IMAGE} />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:site" content={SITE_TWITTER_HANDLE} />
+                <meta name="twitter:title" content={title} />
+                <meta name="twitter:description" content={description} />
+                <meta name="twitter:image" content={SITE_OG_IMAGE} />
+            </Helmet>
             {/* Layout container (controls width) */}
             <div className="max-w-7xl mx-auto">
                 {/* Glass container (hugs content) */}

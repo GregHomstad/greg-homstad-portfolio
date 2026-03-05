@@ -4,6 +4,9 @@ import type { Engine } from "tsparticles-engine"
 import { loadSlim } from "tsparticles-slim"
 
 export default function ParticleBackground() {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    if (prefersReducedMotion) return null
+
     const particlesInit = useCallback(async (engine: Engine) => {
         await loadSlim(engine)
     }, [])

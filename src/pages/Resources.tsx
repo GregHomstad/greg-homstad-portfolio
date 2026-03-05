@@ -1,9 +1,28 @@
 ﻿import { Link } from "react-router-dom"
+import { Helmet } from "react-helmet-async"
 import { resources } from "../data/resources"
+import { SITE_URL, SITE_OG_IMAGE, SITE_TWITTER_HANDLE } from "../seo"
 
 export default function Resources() {
+    const title = "Resources | Greg Homstad"
+    const description = "Articles, templates, and guides for enterprise delivery — BRDs, FRDs, SAP reporting, and functional specifications."
+
     return (
         <section className="pt-28 pb-24 px-6">
+            <Helmet>
+                <title>{title}</title>
+                <meta name="description" content={description} />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={`${SITE_URL}/resources`} />
+                <meta property="og:title" content={title} />
+                <meta property="og:description" content={description} />
+                <meta property="og:image" content={SITE_OG_IMAGE} />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:site" content={SITE_TWITTER_HANDLE} />
+                <meta name="twitter:title" content={title} />
+                <meta name="twitter:description" content={description} />
+                <meta name="twitter:image" content={SITE_OG_IMAGE} />
+            </Helmet>
             {/* Layout container */}
             <div className="max-w-7xl mx-auto">
                 {/* Glass container */}

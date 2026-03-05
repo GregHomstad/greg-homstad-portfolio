@@ -1,6 +1,8 @@
 ﻿import { useParams, Link } from "react-router-dom"
+import { Helmet } from "react-helmet-async"
 import { caseStudies } from "../data/caseStudies"
 import type { CaseStudy, CaseStudyDocument } from "../data/caseStudies"
+import { SITE_URL, SITE_OG_IMAGE, SITE_TWITTER_HANDLE } from "../seo"
 
 export default function CaseStudyDetail() {
     const { slug } = useParams<{ slug: string }>()
@@ -30,6 +32,20 @@ export default function CaseStudyDetail() {
     return (
         <section className="pt-28 pb-24 px-6">
             <div className="max-w-4xl mx-auto">
+                <Helmet>
+                    <title>{caseStudy.title} | Greg Homstad</title>
+                    <meta name="description" content={caseStudy.overview} />
+                    <meta property="og:type" content="article" />
+                    <meta property="og:url" content={`${SITE_URL}/case-studies/${caseStudy.slug}`} />
+                    <meta property="og:title" content={`${caseStudy.title} | Greg Homstad`} />
+                    <meta property="og:description" content={caseStudy.overview} />
+                    <meta property="og:image" content={SITE_OG_IMAGE} />
+                    <meta name="twitter:card" content="summary_large_image" />
+                    <meta name="twitter:site" content={SITE_TWITTER_HANDLE} />
+                    <meta name="twitter:title" content={`${caseStudy.title} | Greg Homstad`} />
+                    <meta name="twitter:description" content={caseStudy.overview} />
+                    <meta name="twitter:image" content={SITE_OG_IMAGE} />
+                </Helmet>
                 {/* Back link */}
                 <Link
                     to="/case-studies"

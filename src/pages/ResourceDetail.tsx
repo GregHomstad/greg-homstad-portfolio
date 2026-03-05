@@ -1,5 +1,7 @@
 ﻿import { useParams, Link } from "react-router-dom"
+import { Helmet } from "react-helmet-async"
 import { resources } from "../data/resources"
+import { SITE_URL, SITE_OG_IMAGE, SITE_TWITTER_HANDLE } from "../seo"
 
 export default function ResourceDetail() {
     const { slug } = useParams()
@@ -26,6 +28,20 @@ export default function ResourceDetail() {
     return (
         <section className="pt-28 pb-24 px-6">
             <div className="max-w-4xl mx-auto">
+                <Helmet>
+                    <title>{resource.title} | Greg Homstad</title>
+                    <meta name="description" content={resource.summary} />
+                    <meta property="og:type" content="article" />
+                    <meta property="og:url" content={`${SITE_URL}/resources/${resource.slug}`} />
+                    <meta property="og:title" content={`${resource.title} | Greg Homstad`} />
+                    <meta property="og:description" content={resource.summary} />
+                    <meta property="og:image" content={SITE_OG_IMAGE} />
+                    <meta name="twitter:card" content="summary_large_image" />
+                    <meta name="twitter:site" content={SITE_TWITTER_HANDLE} />
+                    <meta name="twitter:title" content={`${resource.title} | Greg Homstad`} />
+                    <meta name="twitter:description" content={resource.summary} />
+                    <meta name="twitter:image" content={SITE_OG_IMAGE} />
+                </Helmet>
                 {/* Back */}
                 <Link
                     to="/resources"

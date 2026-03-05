@@ -1,4 +1,6 @@
 ﻿import { Link } from "react-router-dom"
+import { Helmet } from "react-helmet-async"
+import { SITE_URL, SITE_OG_IMAGE, SITE_TWITTER_HANDLE } from "../seo"
 
 const templates = [
     {
@@ -43,8 +45,25 @@ const templates = [
 ]
 
 export default function Templates() {
+    const title = "Enterprise Templates | Greg Homstad"
+    const description = "Enterprise-ready templates for functional specs, BRDs, and FRDs used in real SAP and platform delivery work."
+
     return (
         <section className="pt-28 pb-24 px-6">
+            <Helmet>
+                <title>{title}</title>
+                <meta name="description" content={description} />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={`${SITE_URL}/resources/templates`} />
+                <meta property="og:title" content={title} />
+                <meta property="og:description" content={description} />
+                <meta property="og:image" content={SITE_OG_IMAGE} />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:site" content={SITE_TWITTER_HANDLE} />
+                <meta name="twitter:title" content={title} />
+                <meta name="twitter:description" content={description} />
+                <meta name="twitter:image" content={SITE_OG_IMAGE} />
+            </Helmet>
             <div className="max-w-7xl mx-auto">
                 {/* Glass container */}
                 <div

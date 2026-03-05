@@ -1,6 +1,26 @@
-﻿export default function Resume() {
+﻿import { Helmet } from "react-helmet-async"
+import { SITE_URL, SITE_OG_IMAGE, SITE_TWITTER_HANDLE } from "../seo"
+
+export default function Resume() {
+    const title = "Resume | Greg Homstad"
+    const description = "Full resume for Greg Homstad, Technical Product Owner specializing in SAP, enterprise financial systems, and ERP platform delivery."
+
     return (
         <section className="relative min-h-screen px-6 py-32">
+            <Helmet>
+                <title>{title}</title>
+                <meta name="description" content={description} />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={`${SITE_URL}/resume`} />
+                <meta property="og:title" content={title} />
+                <meta property="og:description" content={description} />
+                <meta property="og:image" content={SITE_OG_IMAGE} />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:site" content={SITE_TWITTER_HANDLE} />
+                <meta name="twitter:title" content={title} />
+                <meta name="twitter:description" content={description} />
+                <meta name="twitter:image" content={SITE_OG_IMAGE} />
+            </Helmet>
             {/* Glass container */}
             <div
                 className="
