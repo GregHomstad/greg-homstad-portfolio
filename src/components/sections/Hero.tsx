@@ -7,10 +7,10 @@ export default function Hero() {
     return (
         <section ref={ref} className={`relative min-h-screen flex flex-col justify-center px-6 pt-20 fade-up${isVisible ? ' visible' : ''}`}>
             <div className="max-w-[1200px] mx-auto w-full">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-end">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
 
                     {/* Text side */}
-                    <div className="pb-12 lg:pb-24">
+                    <div className="flex flex-col justify-end h-full">
                         {/* Label */}
                         <div className="text-label mb-8 font-medium">Technical Product Owner</div>
 
@@ -43,11 +43,11 @@ export default function Hero() {
                     </div>
 
                     {/* Photo — large, B&W, transparent background cutout */}
-                    <div className="hidden lg:flex w-full h-[85vh] justify-end items-end">
+                    <div className="hidden lg:flex w-full h-full justify-end items-stretch">
                         <img
                             src="/Greg-cutout.png"
                             alt="Greg Homstad"
-                            className="w-auto h-full max-h-[1000px] object-contain object-bottom"
+                            className="w-auto h-full max-h-none object-contain"
                             style={{
                                 filter: 'grayscale(100%) contrast(1.1) brightness(1.05)',
                             }}
