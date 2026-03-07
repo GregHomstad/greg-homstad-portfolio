@@ -47,7 +47,7 @@ export default function Hero() {
                         <img
                             src="/Greg-cutout.png"
                             alt="Greg Homstad"
-                            className="w-auto h-full max-h-none object-contain"
+                            className="w-auto h-full max-h-none object-contain object-top"
                             style={{
                                 filter: 'grayscale(100%) contrast(1.1) brightness(1.05)',
                             }}
