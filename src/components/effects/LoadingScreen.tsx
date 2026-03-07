@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import React from "react"
 
 export default function LoadingScreen() {
     const [progress, setProgress] = useState(0)
@@ -33,7 +32,7 @@ export default function LoadingScreen() {
                 {/* Active Progress */}
                 <div
                     className="absolute bottom-0 left-0 h-[1px] bg-[var(--accent)] transition-all duration-300 ease-out"
-                    style={{ width: `${progress}%` } as React.CSSProperties}
+                    style={{ width: `${progress}%` }}
                 />
             </div>
             <div className="mt-12 text-label text-[10px] opacity-30 font-light tracking-[0.3em]">

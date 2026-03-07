@@ -54,7 +54,7 @@ export default function Templates() {
                                 key={t.title}
                                 className="py-10 border-b border-[var(--border)]"
                             >
-                                <h2 className="text-[1.25rem] text-[var(--text)] font-normal font-['DM_Serif_Display'] mb-3">
+                                <h2 className="text-[1.25rem] text-[var(--text)] font-normal text-display mb-3">
                                     {t.title}
                                 </h2>
                                 <p className="text-[0.9rem] text-[var(--muted)] font-light leading-[1.7] mb-5 max-w-[640px]">

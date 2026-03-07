@@ -44,7 +44,7 @@ export default function CaseStudies() {
                             >
                                 <div className="flex flex-col gap-4">
                                     <div className="flex items-start justify-between gap-4">
-                                        <h2 className="text-[1.1rem] md:text-[1.2rem] text-[var(--text)] group-hover:text-[var(--accent)] transition-colors duration-300 font-normal font-['DM_Serif_Display']">
+                                        <h2 className="text-[1.1rem] md:text-[1.2rem] text-[var(--text)] group-hover:text-[var(--accent)] transition-colors duration-300 font-normal text-display">
                                             {c.title}
                                         </h2>
                                         <ArrowRight
