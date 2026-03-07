@@ -5,17 +5,20 @@ import { useScrollAnimation } from "../../hooks/useScrollAnimation"
 export default function Hero() {
     const { ref, isVisible } = useScrollAnimation(0.1)
     return (
-        <section ref={ref} className={`relative min-h-screen flex flex-col justify-center px-6 pt-20 fade-up${isVisible ? ' visible' : ''}`}>
+        <section
+            ref={ref}
+            className={`relative min-h-[100dvh] flex items-center px-6 pt-28 pb-20 lg:pt-32 lg:pb-24 fade-up${isVisible ? " visible" : ""}`}
+        >
             <div className="max-w-[1200px] mx-auto w-full">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+                <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] gap-10 lg:gap-16 items-center">
 
                     {/* Text side */}
                     <div className="flex flex-col justify-end h-full">
                         {/* Label */}
                         <div className="text-label mb-8 font-medium">Technical Product Owner</div>
 
-                        {/* Name — giant editorial serif */}
-                        <h1 className="text-display text-[clamp(4.5rem,10vw,9.5rem)] text-[var(--text)] mb-8 leading-[0.85] pt-4 pb-12">
+                        {/* Name — editorial serif */}
+                        <h1 className="text-display text-[clamp(3.5rem,7vw,5.5rem)] text-[var(--text)] mb-8 leading-[0.9] pt-2 pb-8">
                             Greg<br />Homstad
                         </h1>
 
@@ -43,11 +46,12 @@ export default function Hero() {
                     </div>
 
                     {/* Photo — large, B&W, transparent background cutout */}
-                    <div className="hidden lg:flex w-full h-full justify-end items-stretch">
+                    <div className="hidden lg:flex w-full h-full justify-end items-center">
                         <img
                             src="/Greg-cutout.png"
                             alt="Greg Homstad"
-                            className="w-auto h-full max-h-none object-contain object-top"
+                            loading="lazy"
+                            className="w-auto max-h-[600px] object-contain object-top editorial-photo"
                             style={{
                                 filter: 'grayscale(100%) contrast(1.1) brightness(1.05)',
                             }}

@@ -21,10 +21,10 @@ export default function Navigation() {
 
     return (
         <header
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "bg-[#111111]/95 backdrop-blur-sm" : "bg-transparent"
+            className={`fixed top-0 left-0 right-0 z-50 border-b border-[var(--border)] transition-all duration-500 ${scrolled ? "bg-[#111111]/95 backdrop-blur-sm" : "bg-[rgba(12,12,12,0.85)]"
                 }`}
         >
-            <nav className="max-w-[1200px] mx-auto flex items-center justify-between px-6 py-5">
+            <nav className="max-w-[1200px] mx-auto flex items-center justify-between px-5 py-4 md:px-6 md:py-5">
                 <NavLink
                     to="/"
                     className="font-['DM_Serif_Display'] text-[1.1rem] text-[var(--text)] tracking-[-0.01em] hover:text-[var(--accent)] transition-colors duration-300"
@@ -33,14 +33,16 @@ export default function Navigation() {
                 </NavLink>
 
                 {/* Desktop */}
-                <div className="hidden md:flex items-center gap-8">
+                <div className="hidden md:flex items-center gap-9">
                     {links.map(({ to, label }) => (
                         <NavLink
                             key={to}
                             to={to}
                             end={to === "/"}
                             className={({ isActive }) =>
-                                `text-[0.78rem] tracking-[0.08em] uppercase transition-colors duration-300 ${isActive ? "text-[var(--accent)]" : "text-[var(--muted)] hover:text-[var(--text)]"
+                                `relative text-[0.78rem] tracking-[0.08em] uppercase pb-1 border-b transition-colors duration-300 ${isActive
+                                    ? "text-[var(--accent)] border-[var(--accent)]"
+                                    : "text-[var(--muted)] border-transparent hover:text-[var(--text)] hover:border-[var(--border-hover)]"
                                 }`
                             }
                         >
