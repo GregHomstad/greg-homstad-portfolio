@@ -16,34 +16,16 @@ export default function Resources() {
             icon: <Briefcase className="text-[var(--accent)]" size={24} />,
             items: [
                 {
-                    title: "30-Day PO Takeover Plan",
-                    type: "Framework",
-                    description: "A strategic blueprint for transitioning from technical execution to full product ownership and backlog control.",
-                    href: "/resources/PO_Takeover_Plan.pdf"
-                },
-                {
                     title: "BRD / FS Master Template",
                     type: "Template",
                     description: "The gold standard for business and functional requirements documentation in mission-critical SAP environments.",
                     href: "/resources/BRD_Template.pdf"
                 },
                 {
-                    title: "SAP Reconciliation Playbook",
-                    type: "Methodology",
-                    description: "Iterative processes for maintaining data integrity between SAP S/4HANA and external BOM systems.",
-                    href: "/resources/SAP_Reconciliation_Playbook.pdf"
-                },
-                {
                     title: "Requirements Elicitation Guide",
                     type: "Best Practice",
                     description: "A handbook on turning vague stakeholder requests into technical acceptance criteria for Scrum teams.",
                     href: "/resources/Requirements_Elicitation_Guide.pdf"
-                },
-                {
-                    title: "The Enterprise Glossary",
-                    type: "Wiki",
-                    description: "A deep-dive index of SAP, ERP, and Product Costing acronyms essential for cross-functional communication.",
-                    href: "/resources/Enterprise_Glossary.pdf"
                 },
                 {
                     title: "eCornell Product Management Certificate",
