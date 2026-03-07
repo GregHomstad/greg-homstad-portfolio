@@ -5,8 +5,8 @@ import { Download, Briefcase } from "lucide-react"
 
 export default function Resources() {
     const { ref, isVisible } = useScrollAnimation()
-    const title = "Product Playbook | Greg Homstad"
-    const desc = "A curated collection of enterprise frameworks, professional templates, and iterative product management proof-of-work."
+    const title = "Product Management Resources | Enterprise Templates | Greg Homstad"
+    const desc = "Enterprise frameworks, professional templates, and product management artifacts for SAP and ERP delivery."
 
     const sections = [
         {
@@ -55,12 +55,11 @@ export default function Resources() {
                     <div className="max-w-[800px] mb-24">
                         <div className="text-label mb-6">Professional Resources</div>
                         <h1 className="text-display text-[clamp(2.5rem,7vw,5.5rem)] text-[var(--text)] mb-8 leading-[0.85] pt-4 pb-12">
-                            Product<br />Management<br />Playbook
+                            Reference<br />Library
                         </h1>
                         <p className="text-[1.1rem] text-[var(--muted)] leading-[1.8] font-light max-w-[600px]">
-                            A sequential collection of high-fidelity frameworks and technical artifacts
-                            extracted from iterative enterprise delivery. This is more than a list of tools—it is a
-                            blueprint for product excellence.
+                            High-fidelity frameworks and technical artifacts extracted from iterative enterprise
+                            delivery — templates, guides, and credentials that reflect how product work actually gets done.
                         </p>
                     </div>
 

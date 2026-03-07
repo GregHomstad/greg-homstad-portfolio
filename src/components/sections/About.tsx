@@ -34,21 +34,21 @@ export default function About() {
                             id="about-heading"
                             className="text-display text-[clamp(2rem,4vw,3rem)] text-[var(--text)] mb-8"
                         >
-                            Technical Business Analyst,<br />
+                            Technical Product Owner,<br />
                             Enterprise Systems
                         </h2>
 
                         <p className="text-[0.95rem] text-[var(--muted)] leading-[1.9] font-light mb-4">
-                            I started out in hands-on IT work — supporting systems, infrastructure,
-                            and users directly. That foundation gave me a real understanding of
-                            how enterprise systems behave under load, and how small gaps in
-                            requirements become large operational and financial problems.
+                            I bridge business requirements with technical reality — turning
+                            stakeholder conversations into structured, production-ready
+                            documentation that engineering teams can build from. My work
+                            spans SAP S/4HANA reconciliation, enterprise BOM initiatives,
+                            and cross-functional data platform delivery.
                         </p>
                         <p className="text-[0.95rem] text-[var(--muted)] leading-[1.9] font-light mb-8">
-                            I bridge business requirements with technical
-                            reality — turning stakeholder conversations into structured,
-                            production-ready documentation that engineering teams can build from.
-                            I am currently open to new full-time, remote, or hybrid positions and relocate for the right role.
+                            A foundation in hands-on IT work gave me a real understanding
+                            of how enterprise systems behave under load, and how small gaps
+                            in requirements become large operational and financial problems.
                         </p>
 
                         <Link to="/resume" className="btn-primary">

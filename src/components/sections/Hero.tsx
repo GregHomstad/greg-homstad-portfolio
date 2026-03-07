@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { ArrowRight, MapPin } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { useScrollAnimation } from "../../hooks/useScrollAnimation"
 
 export default function Hero() {
@@ -7,7 +7,7 @@ export default function Hero() {
     return (
         <section
             ref={ref}
-            className={`relative min-h-[80vh] flex items-center px-6 pt-28 pb-20 lg:pt-32 lg:pb-24 fade-up${isVisible ? " visible" : ""}`}
+            className={`relative h-screen min-h-[640px] flex items-center px-6 pt-28 pb-20 lg:pt-32 lg:pb-24 fade-up${isVisible ? " visible" : ""}`}
         >
             <div className="max-w-[1200px] mx-auto w-full">
                 <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] gap-10 lg:gap-16 items-center">
@@ -23,15 +23,27 @@ export default function Hero() {
                         </h1>
 
                         {/* Subtitle */}
-                        <p className="text-[clamp(1.1rem,1.6vw,1.35rem)] text-[var(--muted)] leading-[1.7] max-w-[520px] mb-6 font-light">
+                        <p className="text-[clamp(1.1rem,1.6vw,1.35rem)] text-[var(--muted)] leading-[1.7] max-w-[520px] mb-10 font-light">
                             Bridging business requirements and technical reality
                             across SAP, ERP, and enterprise data platforms.
                         </p>
 
-                        {/* Location */}
-                        <div className="flex items-center gap-2 text-[var(--faint)] text-[0.85rem] mb-12">
-                            <MapPin size={14} />
-                            Open to full-time, remote, hybrid, or relocation positions
+                        {/* Metrics */}
+                        <div className="flex flex-wrap gap-8 mb-12">
+                            <div>
+                                <div className="text-[clamp(1.6rem,3vw,2rem)] text-[var(--text)] text-display">95%</div>
+                                <div className="text-[0.7rem] text-[var(--muted)] uppercase tracking-[0.1em] font-light mt-1">Data discrepancy reduction</div>
+                            </div>
+                            <div className="w-px bg-[var(--border)] hidden sm:block" />
+                            <div>
+                                <div className="text-[clamp(1.6rem,3vw,2rem)] text-[var(--text)] text-display">80+</div>
+                                <div className="text-[0.7rem] text-[var(--muted)] uppercase tracking-[0.1em] font-light mt-1">Infrastructure projects</div>
+                            </div>
+                            <div className="w-px bg-[var(--border)] hidden sm:block" />
+                            <div>
+                                <div className="text-[clamp(1.6rem,3vw,2rem)] text-[var(--text)] text-display">98%</div>
+                                <div className="text-[0.7rem] text-[var(--muted)] uppercase tracking-[0.1em] font-light mt-1">First-time success rate</div>
+                            </div>
                         </div>
 
                         {/* CTAs */}
@@ -49,8 +61,9 @@ export default function Hero() {
                     <div className="hidden lg:flex w-full h-full justify-end items-center">
                         <img
                             src="/Greg-cutout.png"
-                            alt="Greg Homstad"
+                            alt="Greg Homstad, Technical Product Owner"
                             className="w-auto max-h-[520px] object-contain object-top editorial-photo"
+                            loading="lazy"
                             style={{
                                 filter: 'grayscale(100%) contrast(1.1) brightness(1.05)',
                             }}

@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
 import { ArrowRight } from "lucide-react"
 import { useScrollAnimation } from "../../hooks/useScrollAnimation"
+import { caseStudies } from "../../data/caseStudies"
+import Tag from "../ui/Tag"
 
 export default function FeaturedCaseStudies() {
     const { ref, isVisible } = useScrollAnimation()
@@ -8,10 +10,10 @@ export default function FeaturedCaseStudies() {
         <section
             ref={ref}
             aria-labelledby="featured-case-studies-heading"
-            className={`py-32 px-6 border-t border-[var(--border)] fade-up${isVisible ? ' visible' : ''}`}
+            className={`py-32 px-6 border-t border-[var(--border)] fade-up${isVisible ? " visible" : ""}`}
         >
             <div className="max-w-[1200px] mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-end">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-end mb-12">
                     <div>
                         <div className="text-label mb-4">Selected Work</div>
                         <h2
@@ -32,6 +34,39 @@ export default function FeaturedCaseStudies() {
                             View All Work <ArrowRight size={14} />
                         </Link>
                     </div>
+                </div>
+
+                {/* Case study cards */}
+                <div className={`grid gap-6 md:gap-8 md:grid-cols-2 stagger${isVisible ? " visible" : ""}`}>
+                    {caseStudies.slice(0, 3).map((c) => (
+                        <Link
+                            key={c.slug}
+                            to={`/case-studies/${c.slug}`}
+                            className="group relative flex flex-col justify-between rounded-2xl border border-[var(--border)] bg-[var(--surface)]/40 px-6 py-6 md:px-7 md:py-7 hover:border-[var(--border-hover)] hover:bg-[var(--surface-hover)]/60 transition-colors duration-300"
+                        >
+                            <div className="flex flex-col gap-4">
+                                <div className="flex items-start justify-between gap-4">
+                                    <h3 className="text-[1.1rem] md:text-[1.2rem] text-[var(--text)] group-hover:text-[var(--accent)] transition-colors duration-300 font-normal text-display">
+                                        {c.title}
+                                    </h3>
+                                    <ArrowRight
+                                        size={16}
+                                        className="mt-1 shrink-0 text-[var(--faint)] group-hover:text-[var(--accent)] group-hover:translate-x-1 transition-all duration-300"
+                                    />
+                                </div>
+                                <p className="text-[0.85rem] text-[var(--muted)] font-light leading-[1.7] line-clamp-3">
+                                    {c.overview}
+                                </p>
+                                {c.tags && c.tags.length > 0 && (
+                                    <div className="mt-1 flex flex-wrap gap-2">
+                                        {c.tags.slice(0, 4).map((tag) => (
+                                            <Tag key={tag}>{tag}</Tag>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        </Link>
+                    ))}
                 </div>
             </div>
         </section>

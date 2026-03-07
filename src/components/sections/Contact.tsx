@@ -1,5 +1,4 @@
-import { SiLinkedin } from "react-icons/si"
-import { Mail } from "lucide-react"
+import { Linkedin, Mail } from "lucide-react"
 import { useScrollAnimation } from "../../hooks/useScrollAnimation"
 
 export default function Contact() {
@@ -46,7 +45,7 @@ export default function Contact() {
                             rel="noopener noreferrer"
                             className="btn-text"
                         >
-                            <SiLinkedin size={15} />
+                            <Linkedin size={15} />
                             LinkedIn
                         </a>
                     </div>

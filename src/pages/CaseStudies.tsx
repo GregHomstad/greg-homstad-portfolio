@@ -4,11 +4,12 @@ import { ArrowRight } from "lucide-react"
 import { useScrollAnimation } from "../hooks/useScrollAnimation"
 import { SITE_URL, SITE_OG_IMAGE, SITE_TWITTER_HANDLE } from "../seo"
 import { caseStudies } from "../data/caseStudies"
+import Tag from "../components/ui/Tag"
 
 export default function CaseStudies() {
     const { ref, isVisible } = useScrollAnimation()
-    const title = "Work | Greg Homstad"
-    const desc = "Enterprise case studies — SAP reporting, financial compliance, platform modernization."
+    const title = "Enterprise Case Studies | SAP & ERP Product Ownership | Greg Homstad"
+    const desc = "Enterprise case studies in SAP reporting, financial compliance, and data reconciliation. End-to-end product ownership from requirements through delivery."
 
     return (
         <>
@@ -58,12 +59,7 @@ export default function CaseStudies() {
                                     {c.tags && c.tags.length > 0 && (
                                         <div className="mt-1 flex flex-wrap gap-2">
                                             {c.tags.map((tag) => (
-                                                <span
-                                                    key={tag}
-                                                    className="rounded-full border border-[var(--border)] bg-black/10 px-2.5 py-1 text-[0.7rem] uppercase tracking-[0.12em] text-[var(--muted)]"
-                                                >
-                                                    {tag}
-                                                </span>
+                                                <Tag key={tag}>{tag}</Tag>
                                             ))}
                                         </div>
                                     )}

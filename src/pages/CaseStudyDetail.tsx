@@ -1,14 +1,17 @@
 import { Helmet } from "react-helmet-async"
 import { useParams, Link, Navigate } from "react-router-dom"
 import { ArrowLeft } from "lucide-react"
+import { lazy, Suspense } from "react"
 import { useScrollAnimation } from "../hooks/useScrollAnimation"
 import { caseStudies } from "../data/caseStudies"
+import Tag from "../components/ui/Tag"
+
+const MermaidDiagram = lazy(() => import("../components/ui/MermaidDiagram"))
 
 export default function CaseStudyDetail() {
     const { slug } = useParams()
     const { ref, isVisible } = useScrollAnimation()
 
-    // Find the actual case study from data
     const study = caseStudies.find((c) => c.slug === slug)
 
     if (!study) {
@@ -43,7 +46,7 @@ export default function CaseStudyDetail() {
 
                     {/* Summary band */}
                     <section className="mb-16 rounded-2xl border border-[var(--border)] bg-[var(--surface)]/60 px-6 py-6 md:px-7 md:py-7">
-                        <div className="grid gap-6 md:grid-cols-[minmax(0,1.5fr)_minmax(0,1.5fr)] items-start">
+                        <div className="grid gap-6 md:grid-cols-2 items-start">
                             <div>
                                 <div className="text-label mb-3">Impact Highlights</div>
                                 <ul className="space-y-2.5">
@@ -55,18 +58,29 @@ export default function CaseStudyDetail() {
                                     ))}
                                 </ul>
                             </div>
-                            <div className="md:pl-4 border-t md:border-t-0 md:border-l border-[var(--border)]/60 pt-4 md:pt-0 md:ml-2">
+                            <div className="md:pl-4 border-t md:border-t-0 md:border-l border-[var(--border)]/60 pt-4 md:pt-0 md:ml-2 space-y-4">
+                                {study.role && (
+                                    <div>
+                                        <div className="text-label mb-2">Role</div>
+                                        <div className="text-[0.88rem] text-[var(--text)] font-light">{study.role}</div>
+                                    </div>
+                                )}
+                                {study.tools && study.tools.length > 0 && (
+                                    <div>
+                                        <div className="text-label mb-2">Tools & Systems</div>
+                                        <div className="flex flex-wrap gap-2">
+                                            {study.tools.map((tool) => (
+                                                <Tag key={tool}>{tool}</Tag>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
                                 {study.tags && study.tags.length > 0 && (
-                                    <div className="mb-4">
-                                        <div className="text-label mb-3">Systems & Domains</div>
+                                    <div>
+                                        <div className="text-label mb-2">Domains</div>
                                         <div className="flex flex-wrap gap-2">
                                             {study.tags.map((tag) => (
-                                                <span
-                                                    key={tag}
-                                                    className="rounded-full border border-[var(--border)] bg-black/10 px-2.5 py-1 text-[0.7rem] uppercase tracking-[0.12em] text-[var(--muted)]"
-                                                >
-                                                    {tag}
-                                                </span>
+                                                <Tag key={tag}>{tag}</Tag>
                                             ))}
                                         </div>
                                     </div>
@@ -74,6 +88,18 @@ export default function CaseStudyDetail() {
                             </div>
                         </div>
                     </section>
+
+                    {/* Architecture Diagram */}
+                    {study.architectureDiagram && (
+                        <section className="mb-14">
+                            <h2 className="text-label mb-6">Architecture</h2>
+                            <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)]/60 px-4 py-6 md:px-6 md:py-8">
+                                <Suspense fallback={<div className="h-32 flex items-center justify-center text-[var(--muted)] text-sm">Loading diagram…</div>}>
+                                    <MermaidDiagram chart={study.architectureDiagram} />
+                                </Suspense>
+                            </div>
+                        </section>
+                    )}
 
                     {/* Problem / Challenge */}
                     <section className="mb-14">

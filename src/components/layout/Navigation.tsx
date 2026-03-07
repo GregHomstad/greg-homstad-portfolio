@@ -1,11 +1,12 @@
 import { NavLink } from "react-router-dom"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { Menu, X } from "lucide-react"
 
 const links = [
     { to: "/", label: "Home" },
     { to: "/case-studies", label: "Work" },
     { to: "/resources", label: "Resources" },
+    { to: "/ai-workflow", label: "Process" },
     { to: "/resume", label: "Resume" },
 ]
 
@@ -19,11 +20,28 @@ export default function Navigation() {
         return () => window.removeEventListener("scroll", onScroll)
     }, [])
 
+    const handleKeyDown = useCallback((e: KeyboardEvent) => {
+        if (e.key === "Escape" && open) setOpen(false)
+    }, [open])
+
+    useEffect(() => {
+        document.addEventListener("keydown", handleKeyDown)
+        return () => document.removeEventListener("keydown", handleKeyDown)
+    }, [handleKeyDown])
+
     return (
         <header
             className={`fixed top-0 left-0 right-0 z-50 border-b border-[var(--border)] transition-all duration-500 ${scrolled ? "bg-[#111111]/95 backdrop-blur-sm" : "bg-[rgba(12,12,12,0.85)]"
                 }`}
         >
+            {/* Skip to content */}
+            <a
+                href="#main-content"
+                className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] focus:px-4 focus:py-2 focus:bg-[var(--accent)] focus:text-[var(--bg)] focus:rounded focus:text-sm"
+            >
+                Skip to content
+            </a>
+
             <nav className="max-w-[1200px] mx-auto flex items-center justify-between px-5 py-4 md:px-6 md:py-5">
                 <NavLink
                     to="/"
@@ -56,6 +74,7 @@ export default function Navigation() {
                     onClick={() => setOpen(!open)}
                     className="md:hidden text-[var(--muted)]"
                     aria-label="Toggle menu"
+                    aria-expanded={open}
                 >
                     {open ? <X size={20} /> : <Menu size={20} />}
                 </button>
