@@ -2,7 +2,6 @@ import { Helmet } from "react-helmet-async"
 import { useScrollAnimation } from "../hooks/useScrollAnimation"
 import { SITE_URL, SITE_OG_IMAGE, SITE_TWITTER_HANDLE } from "../seo"
 import { Download, Briefcase } from "lucide-react"
-import ClaudeChat from "../components/ui/ClaudeChat"
 
 export default function Resources() {
     const { ref, isVisible } = useScrollAnimation()
@@ -105,11 +104,6 @@ export default function Resources() {
                                 </div>
                             </div>
                         ))}
-                    </div>
-
-                    {/* Claude Opus Q&A */}
-                    <div className="mt-16">
-                        <ClaudeChat />
                     </div>
                 </div>
             </section>
