@@ -7,7 +7,7 @@ export default function Hero() {
     return (
         <section
             ref={ref}
-            className={`relative min-h-[80vh] flex items-center px-6 pt-28 pb-20 lg:pt-32 lg:pb-24 fade-up${isVisible ? " visible" : ""}`}
+            className={`relative min-h-[100dvh] flex items-center px-6 pt-28 pb-20 lg:pt-32 lg:pb-24 fade-up${isVisible ? " visible" : ""}`}
         >
             <div className="max-w-[1200px] mx-auto w-full">
                 <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] gap-10 lg:gap-16 items-center">
@@ -50,7 +50,8 @@ export default function Hero() {
                         <img
                             src="/Greg-cutout.png"
                             alt="Greg Homstad"
-                            className="w-auto max-h-[520px] object-contain object-top editorial-photo"
+                            loading="lazy"
+                            className="w-auto max-h-[600px] object-contain object-top editorial-photo"
                             style={{
                                 filter: 'grayscale(100%) contrast(1.1) brightness(1.05)',
                             }}
