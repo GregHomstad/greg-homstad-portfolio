@@ -68,20 +68,23 @@ export default function CaseStudyDetail() {
                         </ul>
                     </div>
 
-                    {/* Embedded PDF Viewer */}
-                    {study.pdf && (
-                        <div className="mb-14">
-                            <h2 className="text-label mb-6">Core Document</h2>
-                            <div className="w-full aspect-[8.5/11] bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center overflow-hidden">
-                                <iframe
-                                    src={study.pdf}
-                                    className="w-full h-full"
-                                    title={`${study.title} Document`}
-                                />
-                            </div>
+                    {/* Embedded PDF Viewers */}
+                    {study.embeddedPdfs && study.embeddedPdfs.length > 0 && (
+                        <div className="mb-14 space-y-16">
+                            {study.embeddedPdfs.map((pdf, idx) => (
+                                <div key={idx}>
+                                    <h2 className="text-label mb-6">{pdf.title}</h2>
+                                    <div className="w-full h-[70vh] min-h-[600px] max-h-[1000px] bg-[var(--surface)] border border-[var(--border)] overflow-hidden rounded">
+                                        <iframe
+                                            src={`${pdf.href}#view=Fit`}
+                                            className="w-full h-full"
+                                            title={pdf.title}
+                                        />
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     )}
-
                 </div>
             </article>
         </>

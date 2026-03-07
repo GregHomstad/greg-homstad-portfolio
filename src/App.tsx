@@ -4,10 +4,12 @@ import Navigation from "./components/layout/Navigation"
 import Footer from "./components/layout/Footer"
 import ScrollProgress from "./components/effects/ScrollProgress"
 import BackToTop from "./components/effects/BackToTop"
+import LoadingScreen from "./components/effects/LoadingScreen"
 
 export default function App() {
     return (
         <BrowserRouter>
+            <LoadingScreen />
             <div className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
                 <ScrollProgress />
                 <div className="flex flex-col min-h-screen">
