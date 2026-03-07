@@ -1,117 +1,56 @@
-﻿import { SiLinkedin } from "react-icons/si"
+import { SiLinkedin } from "react-icons/si"
+import { Mail } from "lucide-react"
+import { useScrollAnimation } from "../../hooks/useScrollAnimation"
 
 export default function Contact() {
+    const { ref, isVisible } = useScrollAnimation()
     return (
         <section
+            ref={ref}
             id="contact"
             aria-labelledby="contact-heading"
-            className="py-32 px-6 scroll-mt-24"
+            className={`py-32 px-6 scroll-mt-20 border-t border-[var(--border)] fade-up${isVisible ? ' visible' : ''}`}
         >
-            {/* Glass container */}
-            <div
-                className="
-          max-w-4xl mx-auto
-          bg-white/10 backdrop-blur-xl
-          border border-white/15
-          rounded-3xl
-          px-14 py-16
-          text-center
-        "
-            >
-                {/* Heading */}
-                <h2
-                    id="contact-heading"
-                    className="
-            text-4xl md:text-5xl lg:text-6xl
-            font-bold tracking-tight
-            leading-[1.1]
-            text-white
-          "
-                >
-                    Let’s Work Together
-                </h2>
+            <div className="max-w-[1200px] mx-auto">
+                <div className="max-w-[640px]">
+                    <div className="text-label mb-4">Contact</div>
 
-                {/* Core message */}
-                <p
-                    className="
-            mt-6 text-lg md:text-xl
-            font-medium text-slate-200
-            leading-relaxed
-            max-w-2xl mx-auto
-          "
-                >
-                    I work at the intersection of technical product ownership, requirements
-                    analysis, and enterprise systems. I’m always open to thoughtful
-                    conversations about complex problems, system design, and building
-                    solutions that actually scale.
-                </p>
-
-                {/* Credibility anchor */}
-                <p className="mt-6 text-sm text-slate-400">
-                    Experience across SAP, financial systems, and enterprise-scale platforms
-                </p>
-
-                {/* Primary actions */}
-                <div className="mt-14 flex flex-col sm:flex-row gap-6 justify-center items-center">
-                    {/* Email */}
-                    <a
-                        href="mailto:Greg.Homstad@outlook.com"
-                        className="
-              inline-flex items-center gap-2
-              rounded-xl
-              bg-white/10
-              px-10 py-4
-              text-base font-semibold text-white
-              border border-white/25
-              transition-all duration-200
-              hover:bg-white/15
-              hover:border-white/40
-              hover:-translate-y-0.5
-              shadow-md
-              focus-visible:outline-none
-              focus-visible:ring-2
-              focus-visible:ring-blue-500/60
-            "
+                    <h2
+                        id="contact-heading"
+                        className="text-display text-[clamp(2.5rem,6vw,4.5rem)] text-[var(--text)] mb-6"
                     >
-                        Start a conversation
-                        <span aria-hidden="true">→</span>
-                    </a>
+                        Let's Talk
+                    </h2>
 
-                    {/* LinkedIn */}
-                    <a
-                        href="https://linkedin.com/in/GregHomstad"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="
-    inline-flex items-center gap-3
-    rounded-xl
-    px-11 py-4
-    text-base font-semibold text-slate-200
-    border border-white/20
-    transition-all duration-200
-    hover:text-white
-    hover:bg-white/10
-    hover:border-white/40
-    hover:-translate-y-0.5
-    focus-visible:outline-none
-    focus-visible:ring-2
-    focus-visible:ring-blue-500/60
-  "
-                    >
-                        <SiLinkedin className="w-5 h-5 shrink-0 -translate-y-[1px]" />
-                        LinkedIn
-                    </a>
+                    <p className="text-[0.95rem] text-[var(--muted)] leading-[1.8] font-light mb-4">
+                        I work at the intersection of requirements analysis, enterprise systems,
+                        and technical delivery. Always open to conversations about complex
+                        problems and solutions that actually scale.
+                    </p>
 
+                    <p className="text-[0.8rem] text-[var(--faint)] mb-10 font-light">
+                        Based in Northwest Arkansas · Open to remote and hybrid opportunities
+                    </p>
 
-
-
-
+                    <div className="flex flex-col sm:flex-row gap-4">
+                        <a
+                            href="mailto:Greg.Homstad@outlook.com"
+                            className="btn-primary"
+                        >
+                            <Mail size={15} />
+                            Reach Out
+                        </a>
+                        <a
+                            href="https://linkedin.com/in/GregHomstad"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn-text"
+                        >
+                            <SiLinkedin size={15} />
+                            LinkedIn
+                        </a>
+                    </div>
                 </div>
-
-                {/* Closing line */}
-                <p className="mt-12 text-sm text-slate-400">
-                    Based in Northwest Arkansas (NWA) • Open to remote and hybrid opportunities
-                </p>
             </div>
         </section>
     )

@@ -1,65 +1,49 @@
-type Capability = {
-    title: string
-    description: string
-}
+import { useScrollAnimation } from "../../hooks/useScrollAnimation"
 
-const capabilities: Capability[] = [
-    {
-        title: "SAP Recipe & BOM Reconciliation",
-        description:
-            "Field-level validation between SAP ECC and internal BOM systems to eliminate production mismatches.",
-    },
+const capabilities = [
     {
         title: "Functional Spec Authoring",
-        description:
-            "BRD / FRD / Functional Specifications with traceable field mapping and validation logic.",
+        description: "BRDs, FRDs, and functional specifications with traceable field mapping, validation logic, and acceptance criteria that engineering teams can build from.",
+    },
+    {
+        title: "SAP & BOM Reconciliation",
+        description: "Field-level validation between SAP ECC and internal BOM systems to eliminate production mismatches before they reach the floor.",
     },
     {
         title: "Cross-System Data Validation",
-        description:
-            "SAP ↔ BigQuery ↔ MySQL reconciliation queries and structured comparison logic.",
+        description: "SAP ↔ BigQuery ↔ MySQL reconciliation queries and structured comparison logic. If it doesn't match, I find where it breaks.",
     },
     {
         title: "Stakeholder Alignment",
-        description:
-            "Finance, Manufacturing, and IT workshop facilitation with structured requirements capture.",
+        description: "Finance, Manufacturing, and IT workshop facilitation. Structured sessions that turn competing priorities into documented, agreed-upon requirements.",
     },
     {
-        title: "Governance Controls",
-        description:
-            "Schema enforcement, validation rules, and production-safe system logic.",
+        title: "Governance & Controls",
+        description: "Schema enforcement, validation rules, and production-safe system logic that holds up under audit.",
     },
     {
         title: "ERP Data Modeling",
-        description:
-            "Routing structures, PLMZ mapping, CRHD hierarchy integration, and system traceability.",
+        description: "Routing structures, PLMZ mapping, CRHD hierarchy, and system traceability across enterprise platforms.",
     },
 ]
 
 export default function WhatIDo() {
+    const { ref, isVisible } = useScrollAnimation()
     return (
-        <section className="py-24 px-6">
-            <div className="max-w-7xl mx-auto">
-                <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                        What I Actually Do
-                    </h2>
-                    <p className="text-slate-400 max-w-2xl mx-auto">
-                        Enterprise manufacturing systems require structure,
-                        validation, and cross-functional clarity.
-                    </p>
-                </div>
+        <section ref={ref} className={`py-32 px-6 section-accent-glow fade-up${isVisible ? ' visible' : ''}`}>
+            <div className="max-w-[1200px] mx-auto">
+                <div className="text-label mb-4">Capabilities</div>
+                <h2 className="text-display text-[clamp(2rem,5vw,3.5rem)] text-[var(--text)] mb-16 max-w-[600px]">
+                    What I Actually Do
+                </h2>
 
-                <div className="grid md:grid-cols-3 gap-8">
+                <div className={`stagger${isVisible ? ' visible' : ''}`}>
                     {capabilities.map((item) => (
-                        <div
-                            key={item.title}
-                            className="p-8 bg-white/5 border border-white/10 rounded-2xl hover:border-blue-400/40 transition duration-300"
-                        >
-                            <h3 className="text-xl font-semibold mb-4">
+                        <div key={item.title} className="editorial-row grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-4 md:gap-12 py-8 border-b border-[var(--border)]">
+                            <h3 className="text-[1.1rem] text-[var(--text)] font-normal">
                                 {item.title}
                             </h3>
-                            <p className="text-slate-300 text-sm leading-relaxed">
+                            <p className="text-[0.9rem] text-[var(--muted)] leading-[1.8] font-light">
                                 {item.description}
                             </p>
                         </div>

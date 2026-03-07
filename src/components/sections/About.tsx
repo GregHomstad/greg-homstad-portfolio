@@ -1,203 +1,98 @@
-﻿import { Link } from "react-router-dom"
+import { Link } from "react-router-dom"
+import { ArrowRight } from "lucide-react"
+import { useScrollAnimation } from "../../hooks/useScrollAnimation"
+
+const experience = [
+    {
+        company: "Tyson Foods",
+        role: "IT Product Owner · Financial Controlling & Costing",
+        description: "Owned SAP reporting, BOM platforms, and compliance initiatives; led ERP reconciliation improving data accuracy and audit reliability.",
+    },
+    {
+        company: "U.S. Department of Veterans Affairs",
+        role: "Systems Administrator",
+        description: "Supported secure enterprise systems in a federal environment; held Public Trust clearance and ensured compliance with government security controls.",
+    },
+    {
+        company: "Field Nation",
+        role: "IT Field Technician",
+        description: "Delivered 80+ infrastructure projects across 25+ sites with high first-time success; led complex deployments end-to-end.",
+    },
+    {
+        company: "Shine Solar",
+        role: "IT Support Specialist",
+        description: "Supported 300+ users; authored IT policies and training that reduced repeat incidents and onboarding time.",
+    },
+]
 
 export default function About() {
+    const { ref, isVisible } = useScrollAnimation()
     return (
-        <section
-            id="about"
-            aria-labelledby="about-heading"
-            className="py-24 px-6"
-        >
-            {/* Glass container */}
-            <div
-                className="
-                    relative max-w-7xl mx-auto
-                    bg-white/10 backdrop-blur-xl
-                    border border-white/15
-                    rounded-3xl
-                    px-14 py-14
-                "
-            >
+        <section ref={ref} id="about" aria-labelledby="about-heading" className={`py-32 px-6 fade-up${isVisible ? ' visible' : ''}`}>
+            <div className="max-w-[1200px] mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
-                    {/* Left column */}
+                    {/* Left — narrative */}
                     <div>
-                        {/* About badge */}
-                        <div
-                            className="
-                                inline-block mb-12 px-6 py-2
-                                rounded-full
-                                bg-emerald-400/20
-                                border border-emerald-400/30
-                            "
-                        >
-                            <span className="text-sm font-semibold tracking-wide text-emerald-200">
-                                About
-                            </span>
-                        </div>
-
-                        {/* Title */}
+                        <div className="text-label mb-4">About</div>
                         <h2
                             id="about-heading"
-                            className="
-                                text-3xl md:text-4xl lg:text-5xl
-                                font-bold tracking-tight
-                                leading-[1.15]
-                                text-white
-                                text-center md:text-left
-                            "
+                            className="text-display text-[clamp(2rem,4vw,3rem)] text-[var(--text)] mb-8"
                         >
-                            Technical Product Owner
-                            <br />
-                            Enterprise Systems and Operations
+                            Technical Business Analyst,<br />
+                            Enterprise Systems
                         </h2>
 
-                        {/* Narrative */}
-                        <p
-                            className="
-                                mt-8 text-lg font-medium
-                                text-slate-200
-                                leading-relaxed
-                                max-w-xl
-                                text-center md:text-left
-                            "
-                        >
-                            I started out doing hands-on IT work, supporting systems,
-                            infrastructure, and users directly. That experience gave me
-                            a strong understanding of how enterprise systems actually
-                            behave in production, and how small gaps can turn into real
-                            operational and financial problems.
-                            <br /><br />
-                            Over time, I moved closer to data, reporting, and platform
-                            ownership. Most recently, I worked as a Technical Product Owner,
-                            owning requirements and delivery across SAP-backed platforms and
-                            enterprise financial systems. I spend my time bridging
-                            business needs with technical reality to make sure systems
-                            are reliable, auditable, and built to scale.
+                        <p className="text-[0.95rem] text-[var(--muted)] leading-[1.9] font-light mb-4">
+                            I started out in hands-on IT work — supporting systems, infrastructure,
+                            and users directly. That foundation gave me a real understanding of
+                            how enterprise systems behave under load, and how small gaps in
+                            requirements become large operational and financial problems.
+                        </p>
+                        <p className="text-[0.95rem] text-[var(--muted)] leading-[1.9] font-light mb-8">
+                            I've since moved into requirements analysis, functional spec writing,
+                            and enterprise platform delivery. I bridge business needs with technical
+                            reality — turning stakeholder conversations into structured,
+                            production-ready documentation that engineering teams can build from.
                         </p>
 
-                        {/* Resume CTA */}
-                        <div className="mt-10 flex justify-center md:justify-start">
-                            <Link
-                                to="/resume"
-                                className="
-                                    inline-flex items-center gap-2
-                                    rounded-xl
-                                    bg-white/8
-                                    px-9 py-4
-                                    text-base font-semibold text-white
-                                    border border-emerald-400/30
-                                    transition-all duration-200
-                                    hover:bg-white/12
-                                    hover:border-emerald-400/60
-                                    hover:-translate-y-0.5
-                                    shadow-md
-                                    focus-visible:outline-none
-                                    focus-visible:ring-2
-                                    focus-visible:ring-emerald-400/60
-                                "
-                            >
-                                View full resume
-                                <span aria-hidden="true">→</span>
-                            </Link>
-                        </div>
+                        <Link to="/resume" className="btn-primary">
+                            Full resume <ArrowRight size={14} />
+                        </Link>
                     </div>
 
-                    {/* Right column */}
-                    <div className="space-y-10">
-
-                        {/* Experience */}
-                        <section
-                            aria-labelledby="experience-heading"
-                            className="
-                                rounded-2xl
-                                border border-white/15
-                                bg-white/7 backdrop-blur-lg
-                                p-8
-                            "
-                        >
-                            <h3
-                                id="experience-heading"
-                                className="text-lg font-semibold text-white mb-5"
-                            >
-                                Experience
-                            </h3>
-
-                            <div className="space-y-4 text-sm text-slate-300 leading-relaxed">
-                                <div>
-                                    <span className="font-medium text-white">
-                                        Tyson Foods
-                                    </span>{" "}
-                                    — IT Product Owner (Financial Controlling and Costing)
-                                    <p className="mt-1">
-                                        Own SAP reporting, BOM platforms, and compliance initiatives;
-                                        lead ERP reconciliation improving data accuracy and audit reliability
+                    {/* Right — experience timeline */}
+                    <div>
+                        <div className="text-label mb-6">Experience</div>
+                        <div className={`stagger${isVisible ? ' visible' : ''}`}>
+                            {experience.map((exp) => (
+                                <div key={exp.company} className="py-5 border-b border-[var(--border)]">
+                                    <div className="text-[0.95rem] text-[var(--text)] mb-1">
+                                        {exp.company}
+                                    </div>
+                                    <div className="text-[0.78rem] text-[var(--accent)] mb-2 font-light">
+                                        {exp.role}
+                                    </div>
+                                    <p className="text-[0.82rem] text-[var(--muted)] leading-[1.7] font-light">
+                                        {exp.description}
                                     </p>
                                 </div>
-
-                                <div>
-                                    <span className="font-medium text-white">
-                                        U.S. Department of Veterans Affairs
-                                    </span>{" "}
-                                    — Systems Administrator
-                                    <p className="mt-1">
-                                        Supported secure enterprise systems in a federal environment;
-                                        held a Public Trust clearance and ensured compliance with
-                                        government security and access controls
-                                    </p>
-                                </div>
-
-                                <div>
-                                    <span className="font-medium text-white">
-                                        Field Nation
-                                    </span>{" "}
-                                    — IT Field Technician
-                                    <p className="mt-1">
-                                        Delivered 80+ infrastructure projects across more than
-                                        25 sites with high first-time success; led complex deployments
-                                    </p>
-                                </div>
-
-                                <div>
-                                    <span className="font-medium text-white">
-                                        Shine Solar
-                                    </span>{" "}
-                                    — IT Support Specialist
-                                    <p className="mt-1">
-                                        Supported more than 300 users; authored IT policies and training
-                                        that reduced repeat incidents and onboarding time
-                                    </p>
-                                </div>
-                            </div>
-                        </section>
+                            ))}
+                        </div>
 
                         {/* Education */}
-                        <section
-                            aria-labelledby="education-heading"
-                            className="
-        rounded-2xl
-        border border-white/15
-        bg-white/7 backdrop-blur-lg
-        p-8
-    "
-                        >
-                            <h3
-                                id="education-heading"
-                                className="text-lg font-semibold text-white mb-4"
-                            >
-                                Education
-                            </h3>
-
-                            <div className="text-sm text-slate-300 leading-relaxed">
-                                <span className="font-medium text-white">
-                                    Bachelor of Science in Business Administration
-                                </span>
-                                <p className="mt-1">
-                                    Major in Information Systems with a Business Analytics concentration<br />
-                                    University of Arkansas, Sam M. Walton College of Business
-                                </p>
+                        <div className="mt-10">
+                            <div className="text-label mb-4">Education</div>
+                            <div className="text-[0.95rem] text-[var(--text)] mb-1">
+                                University of Arkansas
                             </div>
-                        </section>
-
+                            <div className="text-[0.82rem] text-[var(--accent)] mb-1 font-light">
+                                B.S. Business Administration
+                            </div>
+                            <div className="text-[0.78rem] text-[var(--muted)] font-light">
+                                Information Systems · Business Analytics
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

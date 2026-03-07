@@ -1,199 +1,89 @@
-﻿import { useParams, Link } from "react-router-dom"
-import { Helmet } from "react-helmet-async"
+﻿import { Helmet } from "react-helmet-async"
+import { useParams, Link, Navigate } from "react-router-dom"
+import { ArrowLeft } from "lucide-react"
+import { useScrollAnimation } from "../hooks/useScrollAnimation"
 import { caseStudies } from "../data/caseStudies"
-import type { CaseStudy, CaseStudyDocument } from "../data/caseStudies"
-import { SITE_URL, SITE_OG_IMAGE, SITE_TWITTER_HANDLE } from "../seo"
 
 export default function CaseStudyDetail() {
-    const { slug } = useParams<{ slug: string }>()
+    const { slug } = useParams()
+    const { ref, isVisible } = useScrollAnimation()
 
-    const caseStudy = caseStudies.find(
-        (c: CaseStudy) => c.slug === slug
-    )
+    // Find the actual case study from data
+    const study = caseStudies.find((c) => c.slug === slug)
 
-    if (!caseStudy) {
-        return (
-            <section className="pt-28 px-6">
-                <div className="max-w-3xl mx-auto">
-                    <h1 className="text-2xl font-semibold text-white">
-                        Case study not found
-                    </h1>
-                    <Link
-                        to="/case-studies"
-                        className="mt-4 inline-block text-blue-400 hover:text-blue-300"
-                    >
-                        ← Back to case studies
-                    </Link>
-                </div>
-            </section>
-        )
+    if (!study) {
+        return <Navigate to="/case-studies" replace />
     }
 
     return (
-        <section className="pt-28 pb-24 px-6">
-            <div className="max-w-4xl mx-auto">
-                <Helmet>
-                    <title>{caseStudy.title} | Greg Homstad</title>
-                    <meta name="description" content={caseStudy.overview} />
-                    <meta property="og:type" content="article" />
-                    <meta property="og:url" content={`${SITE_URL}/case-studies/${caseStudy.slug}`} />
-                    <meta property="og:title" content={`${caseStudy.title} | Greg Homstad`} />
-                    <meta property="og:description" content={caseStudy.overview} />
-                    <meta property="og:image" content={SITE_OG_IMAGE} />
-                    <meta name="twitter:card" content="summary_large_image" />
-                    <meta name="twitter:site" content={SITE_TWITTER_HANDLE} />
-                    <meta name="twitter:title" content={`${caseStudy.title} | Greg Homstad`} />
-                    <meta name="twitter:description" content={caseStudy.overview} />
-                    <meta name="twitter:image" content={SITE_OG_IMAGE} />
-                </Helmet>
-                {/* Back link */}
-                <Link
-                    to="/case-studies"
-                    className="text-sm text-slate-400 hover:text-white transition"
-                >
-                    ← Back to case studies
-                </Link>
+        <>
+            <Helmet>
+                <title>{`${study.title} | Greg Homstad`}</title>
+                <meta name="description" content={study.overview} />
+            </Helmet>
 
-                {/* Title */}
-                <h1 className="mt-3 text-3xl md:text-4xl font-bold text-white">
-                    {caseStudy.title}
-                </h1>
+            <article ref={ref} className={`min-h-screen pt-28 pb-32 px-6 fade-up${isVisible ? ' visible' : ''}`}>
+                <div className="max-w-[800px] mx-auto">
 
-                {/* Overview */}
-                <p className="mt-4 text-slate-300 leading-relaxed max-w-3xl">
-                    {caseStudy.overview}
-                </p>
+                    {/* Back */}
+                    <Link to="/case-studies" className="btn-text mb-10 inline-flex">
+                        <ArrowLeft size={14} /> Back to Work
+                    </Link>
 
-                {/* Content */}
-                <div className="mt-10 space-y-6">
-                    {/* 01 */}
-                    <section>
-                        <h2 className="text-xl font-semibold text-white">
-                            It All Started When…
-                        </h2>
-                        <p className="mt-2 text-slate-300 leading-relaxed">
-                            Finance stakeholders identified a recurring
-                            reconciliation bottleneck within SAP cost center
-                            line-item reporting. Although key reference data
-                            existed within SAP, users were required to navigate
-                            multiple screens and document headers to identify
-                            posting origins.
+                    {/* Header */}
+                    <div className="text-label mb-4">Case Study</div>
+                    <h1 className="text-display text-[clamp(2rem,5vw,3.5rem)] text-[var(--text)] mb-4">
+                        {study.title}
+                    </h1>
+                    <p className="text-[1.05rem] text-[var(--muted)] leading-[1.7] font-light mb-16">
+                        {study.overview}
+                    </p>
+
+                    {/* Problem / Challenge */}
+                    <div className="mb-14">
+                        <h2 className="text-label mb-4">Challenge</h2>
+                        <p className="text-[0.95rem] text-[var(--muted)] leading-[1.9] font-light">
+                            {study.problem}
                         </p>
-                    </section>
+                    </div>
 
-                    {/* 02 */}
-                    <section>
-                        <h2 className="text-xl font-semibold text-white">
-                            The Problem
-                        </h2>
-                        <p className="mt-2 text-slate-300 leading-relaxed">
-                            {caseStudy.problem}
+                    {/* Solution / Approach */}
+                    <div className="mb-14">
+                        <h2 className="text-label mb-4">Approach</h2>
+                        <p className="text-[0.95rem] text-[var(--muted)] leading-[1.9] font-light">
+                            {study.solution}
                         </p>
-                    </section>
+                    </div>
 
-                    {/* 03 */}
-                    <section>
-                        <h2 className="text-xl font-semibold text-white">
-                            The Solution
-                        </h2>
-                        <p className="mt-2 text-slate-300 leading-relaxed">
-                            {caseStudy.solution}
-                        </p>
-                    </section>
-
-                    {/* 04 */}
-                    <section>
-                        <h2 className="text-xl font-semibold text-white">
-                            The Impact
-                        </h2>
-                        <ul className="mt-2 list-disc list-inside text-slate-300 space-y-1">
-                            {caseStudy.impact.map((item: string) => (
-                                <li key={item}>{item}</li>
+                    {/* Impact */}
+                    <div className="mb-14">
+                        <h2 className="text-label mb-4">Impact</h2>
+                        <ul className="space-y-3">
+                            {study.impact.map((item) => (
+                                <li key={item} className="flex items-start gap-3 text-[0.9rem] text-[var(--muted)] font-light leading-[1.7]">
+                                    <span className="w-1 h-1 rounded-full bg-[var(--accent)] mt-2.5 shrink-0" />
+                                    {item}
+                                </li>
                             ))}
                         </ul>
-                    </section>
+                    </div>
 
-                    {/* Supporting Documentation */}
-                    {(caseStudy.documents || caseStudy.pdf) && (
-                        <section>
-                            <h2 className="text-xl font-semibold text-white">
-                                Supporting Documentation
-                            </h2>
-
-                            <div className="mt-4">
-                                {caseStudy.documents?.map(
-                                    (doc: CaseStudyDocument) => (
-                                        <a
-                                            key={doc.label}
-                                            href={doc.href}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="
-                                                inline-block
-                                                max-w-sm
-                                                rounded-xl
-                                                border border-white/10
-                                                bg-white/5
-                                                backdrop-blur
-                                                p-4
-                                                transition
-                                                hover:border-blue-400/40
-                                                hover:bg-white/10
-                                                cursor-pointer
-                                            "
-                                        >
-                                            <p className="text-sm text-slate-400 mb-1">
-                                                {doc.type}
-                                            </p>
-
-                                            <h3 className="text-white font-medium mb-2">
-                                                {doc.label}
-                                            </h3>
-
-                                            <span className="text-sm text-blue-400">
-                                                View document →
-                                            </span>
-                                        </a>
-                                    )
-                                )}
-
-                                {!caseStudy.documents && caseStudy.pdf && (
-                                    <a
-                                        href={caseStudy.pdf}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="
-                                            inline-block
-                                            max-w-sm
-                                            rounded-xl
-                                            border border-white/10
-                                            bg-white/5
-                                            backdrop-blur
-                                            p-4
-                                            transition
-                                            hover:border-blue-400/40
-                                            hover:bg-white/10
-                                            cursor-pointer
-                                        "
-                                    >
-                                        <p className="text-sm text-slate-400 mb-1">
-                                            Business Requirements Document
-                                        </p>
-
-                                        <h3 className="text-white font-medium mb-2">
-                                            SAP Cost Center Line-Item Reporting
-                                        </h3>
-
-                                        <span className="text-sm text-blue-400">
-                                            View document →
-                                        </span>
-                                    </a>
-                                )}
+                    {/* Embedded PDF Viewer */}
+                    {study.pdf && (
+                        <div className="mb-14">
+                            <h2 className="text-label mb-6">Core Document</h2>
+                            <div className="w-full aspect-[8.5/11] bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center overflow-hidden">
+                                <iframe
+                                    src={study.pdf}
+                                    className="w-full h-full"
+                                    title={`${study.title} Document`}
+                                />
                             </div>
-                        </section>
+                        </div>
                     )}
+
                 </div>
-            </div>
-        </section>
+            </article>
+        </>
     )
 }

@@ -1,78 +1,41 @@
-type StackCategory = {
-    title: string
-    items: string[]
-}
+import { useScrollAnimation } from "../../hooks/useScrollAnimation"
 
-const stack: StackCategory[] = [
+const stacks = [
     {
-        title: "Enterprise Systems",
-        items: [
-            "SAP ECC",
-            "Routing (C203)",
-            "BOM (CS03)",
-            "PLMZ",
-            "CRHD / CRHS / CRTX",
-        ],
+        category: "Enterprise Systems",
+        items: ["SAP ECC", "Routing (C203)", "BOM (CS03)", "PLMZ", "CRHD / CRHS / CRTX"],
     },
     {
-        title: "Data Layer",
-        items: [
-            "BigQuery",
-            "MySQL",
-            "SQL",
-            "GCP",
-            "Cross-System Reconciliation",
-        ],
+        category: "Data & Analytics",
+        items: ["BigQuery", "MySQL", "SQL", "GCP", "Cross-System Reconciliation", "Excel"],
     },
     {
-        title: "Documentation",
-        items: [
-            "BRD",
-            "FRD",
-            "Functional Specs",
-            "Process Mapping",
-            "Validation Frameworks",
-        ],
-    },
-    {
-        title: "Delivery",
-        items: [
-            "Agile",
-            "UAT",
-            "Stakeholder Workshops",
-            "Governance Controls",
-            "Production Change Management",
-        ],
+        category: "AI & Automation",
+        items: ["Claude (Anthropic)", "AI-Assisted Analysis", "Prompt Engineering", "Workflow Automation", "Documentation AI"],
     },
 ]
 
 export default function EnterpriseStack() {
+    const { ref, isVisible } = useScrollAnimation()
     return (
-        <section className="py-24 px-6 bg-slate-900/40">
-            <div className="max-w-7xl mx-auto">
-                <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                        Enterprise Technical Stack
-                    </h2>
-                    <p className="text-slate-400 max-w-2xl mx-auto">
-                        Systems, data layers, documentation, and delivery
-                        frameworks I operate within.
-                    </p>
-                </div>
+        <section ref={ref} className={`py-32 px-6 fade-up${isVisible ? ' visible' : ''}`}>
+            <div className="max-w-[1200px] mx-auto">
+                <div className="text-label mb-4">Technical Stack</div>
+                <h2 className="text-display text-[clamp(2rem,5vw,3.5rem)] text-[var(--text)] mb-16 max-w-[600px]">
+                    Enterprise Technical Stack
+                </h2>
 
-                <div className="grid md:grid-cols-4 gap-8">
-                    {stack.map((category) => (
-                        <div
-                            key={category.title}
-                            className="p-8 bg-white/5 border border-white/10 rounded-2xl"
-                        >
-                            <h3 className="text-xl font-semibold mb-4">
-                                {category.title}
+                <div className={`grid grid-cols-1 md:grid-cols-3 gap-12 stagger${isVisible ? ' visible' : ''}`}>
+                    {stacks.map((stack) => (
+                        <div key={stack.category}>
+                            <h3 className="text-[0.95rem] text-[var(--text)] mb-5 pb-3 border-b border-[var(--accent)] border-opacity-30">
+                                {stack.category}
                             </h3>
-
-                            <ul className="space-y-2 text-slate-300 text-sm">
-                                {category.items.map((item) => (
-                                    <li key={item}>• {item}</li>
+                            <ul className="space-y-2.5">
+                                {stack.items.map((item) => (
+                                    <li key={item} className="text-[0.85rem] text-[var(--muted)] font-light">
+                                        {item}
+                                    </li>
                                 ))}
                             </ul>
                         </div>

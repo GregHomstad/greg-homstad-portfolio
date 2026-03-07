@@ -28,3 +28,8 @@ dist-ssr
 
 # Claude Code project files
 .claude/
+
+# Environment secrets
+.env
+.env.local
+.env.*.local

@@ -35,5 +35,12 @@ export const caseStudies: CaseStudy[] = [
         ],
         tags: ["SAP", "KSB1", "Field Visibility", "Finance Reporting"],
         pdf: "/case-studies/KSB1/KSB1_BRD.pdf",
+        documents: [
+            {
+                type: "BRD",
+                label: "Business Requirements Document",
+                href: "/Greg_Homstad_BRD_Anonymized_SAP_Cost_Center_Reporting.docx"
+            }
+        ]
     },
 ]

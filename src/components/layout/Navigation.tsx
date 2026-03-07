@@ -1,91 +1,85 @@
-﻿import { NavLink, useLocation, useNavigate } from "react-router-dom"
-import { useEffect } from "react"
+import { NavLink } from "react-router-dom"
+import { useState, useEffect } from "react"
+import { Menu, X } from "lucide-react"
 
-type NavItem =
-    | { label: string; to: string; onClick?: never }
-    | { label: string; to?: never; onClick: () => void }
+const links = [
+    { to: "/", label: "Home" },
+    { to: "/case-studies", label: "Work" },
+    { to: "/resources", label: "Resources" },
+    { to: "/resume", label: "Resume" },
+]
 
 export default function Navigation() {
-    const location = useLocation()
-    const navigate = useNavigate()
+    const [open, setOpen] = useState(false)
+    const [scrolled, setScrolled] = useState(false)
 
-    // Scroll to top on real route changes only
     useEffect(() => {
-        window.scrollTo({ top: 0, behavior: "auto" })
-    }, [location.pathname])
-
-    const goHome = () => {
-        if (location.pathname !== "/") {
-            navigate("/")
-        } else {
-            window.scrollTo({ top: 0, behavior: "smooth" })
-        }
-    }
-
-    const goToContact = () => {
-        navigate("/#contact")
-    }
-
-    const NAV_ITEMS: NavItem[] = [
-        { label: "Home", onClick: goHome },
-        { label: "Case Studies", to: "/case-studies" },
-        { label: "Resources", to: "/resources" },
-        { label: "Contact", onClick: goToContact },
-    ]
-
-    const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-        [
-            "nav-item",
-            "relative",
-            "text-slate-300",
-            "transition-colors duration-200",
-            "hover:text-white",
-            "focus-visible:outline-none",
-            "focus-visible:ring-2",
-            "focus-visible:ring-blue-500/60",
-            "rounded-sm",
-            isActive ? "text-white" : "",
-        ]
-            .filter(Boolean)
-            .join(" ")
+        const onScroll = () => setScrolled(window.scrollY > 60)
+        window.addEventListener("scroll", onScroll, { passive: true })
+        return () => window.removeEventListener("scroll", onScroll)
+    }, [])
 
     return (
         <header
-            role="banner"
-            className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-slate-950/70 border-b border-white/10"
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "bg-[#111111]/95 backdrop-blur-sm" : "bg-transparent"
+                }`}
         >
-            <nav
-                aria-label="Primary navigation"
-                className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"
-            >
-                {/* Brand */}
-                <button
-                    onClick={goHome}
-                    className="nav-item font-semibold tracking-tight text-white transition-colors duration-200 hover:text-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60"
+            <nav className="max-w-[1200px] mx-auto flex items-center justify-between px-6 py-5">
+                <NavLink
+                    to="/"
+                    className="font-['DM_Serif_Display'] text-[1.1rem] text-[var(--text)] tracking-[-0.01em] hover:text-[var(--accent)] transition-colors duration-300"
                 >
                     Greg Homstad
-                </button>
+                </NavLink>
 
-                {/* Desktop Navigation */}
-                <ul className="flex items-center gap-8 text-sm select-none">
-                    {NAV_ITEMS.map((item) => (
-                        <li key={item.label}>
-                            {item.onClick ? (
-                                <button
-                                    onClick={item.onClick}
-                                    className="nav-item relative text-slate-300 transition-colors duration-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60 rounded-sm"
-                                >
-                                    {item.label}
-                                </button>
-                            ) : (
-                                <NavLink to={item.to} className={navLinkClass}>
-                                    {item.label}
-                                </NavLink>
-                            )}
-                        </li>
+                {/* Desktop */}
+                <div className="hidden md:flex items-center gap-8">
+                    {links.map(({ to, label }) => (
+                        <NavLink
+                            key={to}
+                            to={to}
+                            end={to === "/"}
+                            className={({ isActive }) =>
+                                `text-[0.78rem] tracking-[0.08em] uppercase transition-colors duration-300 ${isActive ? "text-[var(--accent)]" : "text-[var(--muted)] hover:text-[var(--text)]"
+                                }`
+                            }
+                        >
+                            {label}
+                        </NavLink>
                     ))}
-                </ul>
+                </div>
+
+                {/* Mobile toggle */}
+                <button
+                    onClick={() => setOpen(!open)}
+                    className="md:hidden text-[var(--muted)]"
+                    aria-label="Toggle menu"
+                >
+                    {open ? <X size={20} /> : <Menu size={20} />}
+                </button>
             </nav>
+
+            {/* Mobile menu */}
+            {open && (
+                <div className="md:hidden bg-[var(--bg)] border-t border-[var(--border)] px-6 py-6">
+                    <div className="flex flex-col gap-4">
+                        {links.map(({ to, label }) => (
+                            <NavLink
+                                key={to}
+                                to={to}
+                                end={to === "/"}
+                                onClick={() => setOpen(false)}
+                                className={({ isActive }) =>
+                                    `text-[0.85rem] tracking-[0.06em] uppercase transition-colors ${isActive ? "text-[var(--accent)]" : "text-[var(--muted)]"
+                                    }`
+                                }
+                            >
+                                {label}
+                            </NavLink>
+                        ))}
+                    </div>
+                </div>
+            )}
         </header>
     )
 }

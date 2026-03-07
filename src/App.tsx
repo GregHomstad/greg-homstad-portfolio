@@ -2,27 +2,22 @@ import { BrowserRouter } from "react-router-dom"
 import AppRoutes from "./router/routes"
 import Navigation from "./components/layout/Navigation"
 import Footer from "./components/layout/Footer"
-import ParticleBackground from "./components/layout/ParticleBackground"
+import ScrollProgress from "./components/effects/ScrollProgress"
+import BackToTop from "./components/effects/BackToTop"
 
 export default function App() {
     return (
         <BrowserRouter>
-            {/* Root wrapper establishes stacking context */}
-            <div className="relative min-h-screen bg-slate-900 text-slate-100 overflow-hidden">
-
-                {/* Background particles */}
-                <ParticleBackground />
-
-                {/* Foreground app shell */}
-                <div className="relative z-10 flex flex-col min-h-screen">
+            <div className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
+                <ScrollProgress />
+                <div className="flex flex-col min-h-screen">
                     <Navigation />
-
                     <main className="flex-1">
                         <AppRoutes />
                     </main>
-
                     <Footer />
                 </div>
+                <BackToTop />
             </div>
         </BrowserRouter>
     )

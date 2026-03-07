@@ -1,92 +1,64 @@
 import { Link } from "react-router-dom"
+import { ArrowRight, MapPin } from "lucide-react"
+import { useScrollAnimation } from "../../hooks/useScrollAnimation"
 
 export default function Hero() {
+    const { ref, isVisible } = useScrollAnimation(0.1)
     return (
-        <section className="py-32 px-6">
-            <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+        <section ref={ref} className={`relative min-h-screen flex flex-col justify-center px-6 pt-20 fade-up${isVisible ? ' visible' : ''}`}>
+            <div className="max-w-[1200px] mx-auto w-full">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-end">
 
-                {/* LEFT SIDE — TEXT */}
-                <div>
-                    <div className="mb-6">
-                        <span className="inline-block px-4 py-1 text-sm rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400">
-                            Enterprise Manufacturing Systems
-                        </span>
-                    </div>
+                    {/* Text side */}
+                    <div className="pb-12 lg:pb-24">
+                        {/* Label */}
+                        <div className="text-label mb-8">Technical Business Analyst</div>
 
-                    <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6">
-                        <span className="bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
-                            Greg Homstad
-                        </span>
-                    </h1>
+                        {/* Name — giant editorial serif */}
+                        <h1 className="text-display text-[clamp(4rem,10vw,9rem)] text-[var(--text)] mb-6 leading-tight pb-4">
+                            Greg<br />Homstad
+                        </h1>
 
-                    <h2 className="text-xl md:text-2xl text-slate-300 mb-8 leading-relaxed">
-                        IT Product Owner | SAP & BOM Systems Specialist
-                        <br />
-                        Enterprise Data Reconciliation & Functional Architecture
-                    </h2>
+                        {/* Subtitle */}
+                        <p className="text-[clamp(1rem,1.5vw,1.25rem)] text-[var(--muted)] leading-[1.7] max-w-[500px] mb-4 font-light">
+                            Bridging business requirements and technical reality
+                            across SAP, ERP, and enterprise data platforms.
+                        </p>
 
-                    <p className="text-slate-400 max-w-xl mb-10 leading-relaxed">
-                        I design, validate, and govern enterprise manufacturing systems.
-                        From SAP routing structures to cross-database reconciliation,
-                        I ensure production integrity through structured validation,
-                        field-level discipline, and stakeholder alignment.
-                    </p>
-
-                    <div className="flex flex-wrap gap-4">
-                        <Link
-                            to="/case-studies"
-                            className="px-6 py-3 rounded-xl bg-blue-500 hover:bg-blue-600 transition font-medium"
-                        >
-                            View Case Studies
-                        </Link>
-
-                        <Link
-                            to="/resume"
-                            className="px-6 py-3 rounded-xl border border-white/20 hover:border-white/40 transition font-medium"
-                        >
-                            Download Resume
-                        </Link>
-                    </div>
-
-                    {/* Quick Metrics */}
-                    <div className="mt-12 grid grid-cols-3 gap-6 max-w-md">
-                        <div>
-                            <div className="text-2xl font-bold">50+</div>
-                            <div className="text-xs text-slate-400 uppercase tracking-wide">
-                                BRDs
-                            </div>
+                        {/* Location */}
+                        <div className="flex items-center gap-2 text-[var(--faint)] text-[0.8rem] mb-10">
+                            <MapPin size={12} />
+                            Open to full-time, remote, hybrid, or relocation
                         </div>
 
-                        <div>
-                            <div className="text-2xl font-bold">25+</div>
-                            <div className="text-xs text-slate-400 uppercase tracking-wide">
-                                Functional Specs
-                            </div>
-                        </div>
-
-                        <div>
-                            <div className="text-2xl font-bold">4+</div>
-                            <div className="text-xs text-slate-400 uppercase tracking-wide">
-                                Years Enterprise
-                            </div>
+                        {/* CTAs */}
+                        <div className="flex flex-wrap gap-4">
+                            <Link to="/case-studies" className="btn-primary">
+                                View Work <ArrowRight size={14} />
+                            </Link>
+                            <Link to="/resume" className="btn-text">
+                                Resume →
+                            </Link>
                         </div>
                     </div>
-                </div>
 
-                {/* RIGHT SIDE — IMAGE */}
-                <div className="relative flex justify-center">
-                    <div className="relative w-80 h-80 rounded-3xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl">
+                    {/* Photo — large, B&W, transparent background cutout */}
+                    <div className="hidden lg:flex w-full h-[85vh] justify-end items-end">
                         <img
-                            src="/Greg.jpg"
+                            src="/Greg-cutout.png"
                             alt="Greg Homstad"
-                            className="w-full h-full object-cover"
+                            className="w-auto h-full max-h-[1000px] object-contain object-bottom"
+                            style={{
+                                filter: 'grayscale(100%) contrast(1.1) brightness(1.05)',
+                            }}
                         />
                     </div>
-
-                    {/* Glow Effect */}
-                    <div className="absolute -z-10 w-96 h-96 bg-blue-500/20 blur-3xl rounded-full"></div>
                 </div>
+            </div>
 
+            {/* Scroll line */}
+            <div className="absolute bottom-10 left-1/2 -translate-x-1/2" aria-hidden="true">
+                <div className="w-[1px] h-16 bg-gradient-to-b from-[var(--accent)] to-transparent opacity-30" />
             </div>
         </section>
     )

@@ -1,78 +1,54 @@
 ﻿import { Helmet } from "react-helmet-async"
-import { SITE_URL, SITE_OG_IMAGE, SITE_TWITTER_HANDLE } from "../seo"
+import { ArrowRight } from "lucide-react"
+import { useScrollAnimation } from "../hooks/useScrollAnimation"
+import { Link } from "react-router-dom"
 
 export default function Resume() {
+    const { ref, isVisible } = useScrollAnimation()
     const title = "Resume | Greg Homstad"
-    const description = "Full resume for Greg Homstad, Technical Product Owner specializing in SAP, enterprise financial systems, and ERP platform delivery."
+    const desc = "Greg Homstad — Technical Business Analyst. Enterprise systems, SAP, requirements analysis."
 
     return (
-        <section className="relative min-h-screen px-6 py-32">
+        <>
             <Helmet>
                 <title>{title}</title>
-                <meta name="description" content={description} />
-                <meta property="og:type" content="website" />
-                <meta property="og:url" content={`${SITE_URL}/resume`} />
-                <meta property="og:title" content={title} />
-                <meta property="og:description" content={description} />
-                <meta property="og:image" content={SITE_OG_IMAGE} />
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:site" content={SITE_TWITTER_HANDLE} />
-                <meta name="twitter:title" content={title} />
-                <meta name="twitter:description" content={description} />
-                <meta name="twitter:image" content={SITE_OG_IMAGE} />
+                <meta name="description" content={desc} />
             </Helmet>
-            {/* Glass container */}
-            <div
-                className="
-          max-w-6xl mx-auto
-          bg-white/10 backdrop-blur-xl
-          border border-white/15
-          rounded-3xl
-          p-10 md:p-14
-        "
-            >
-                {/* Header */}
-                <div className="mb-10">
-                    <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-                        {/* Title block */}
-                        <div>
-                            <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-                                Full Resume
-                            </h1>
-                            <p className="mt-3 text-slate-300">
-                                Technical Product Owner • Systems & Integrations
-                            </p>
-                        </div>
 
-                        {/* Action */}
+            <section ref={ref} className={`min-h-screen pt-28 pb-32 px-6 fade-up${isVisible ? ' visible' : ''}`}>
+                <div className="max-w-[800px] mx-auto">
+                    <div className="text-label mb-4">Resume</div>
+                    <h1 className="text-display text-[clamp(2.5rem,6vw,4.5rem)] text-[var(--text)] mb-4">
+                        Greg Homstad
+                    </h1>
+                    <p className="text-[1.05rem] text-[var(--muted)] leading-[1.7] font-light mb-12">
+                        Technical Business Analyst · Enterprise Systems · SAP
+                    </p>
+
+                    {/* PDF embed */}
+                    <div className="w-full aspect-[8.5/11] bg-[var(--surface)] border border-[var(--border)] mb-10 flex items-center justify-center">
+                        <iframe
+                            src="/docs/Greg_Homstad_Resume.pdf"
+                            className="w-full h-full"
+                            title="Greg Homstad Resume"
+                        />
+                    </div>
+
+                    {/* Actions */}
+                    <div className="flex flex-wrap gap-4">
                         <a
                             href="/docs/Greg_Homstad_Resume.pdf"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="
-                inline-flex items-center gap-2
-                rounded-xl
-                bg-white/10
-                px-6 py-3
-                text-sm font-medium
-                hover:bg-white/20
-                transition
-              "
+                            download
+                            className="btn-primary"
                         >
-                            Open PDF in New Tab
+                            Download PDF <ArrowRight size={14} />
                         </a>
+                        <Link to="/#contact" className="btn-text">
+                            Get in touch →
+                        </Link>
                     </div>
                 </div>
-
-                {/* PDF Preview */}
-                <div className="relative w-full overflow-hidden rounded-2xl border border-white/10">
-                    <iframe
-                        src="/docs/Greg_Homstad_Resume.pdf"
-                        className="w-full h-[80vh]"
-                        title="Greg Homstad Resume"
-                    />
-                </div>
-            </div>
-        </section>
+            </section>
+        </>
     )
 }
