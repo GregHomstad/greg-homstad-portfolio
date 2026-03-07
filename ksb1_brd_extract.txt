@@ -1,0 +1,270 @@
+   
+ 
+Hom stad, Greg    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+BUSINESS REQUIREMENTS (ANONYMIZED)  
+SAP Cost Center Line -Item Reporting  
+Reference Key Visibility  
+ 
+Prepared by: Greg Homstad  
+Date: September 2025  
+ 
+Version 0. 2.0 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+   
+ 
+VERSION  HISTORY  
+VERSION  REVISION DATE  DESCRIPTION OF CHANGE  AUTHOR  
+0.1.0  09/11/2025  Initial draft prepared for business requirements gathering session 
+with finance stakeholders.  Greg Homstad  
+0.2.0  9/12/2025  Updated based on stakeholder feedback. Removed solution 
+assumptions, clarified reporting scope, aligned terminology, added 
+negative testing scenarios, and refined language to be business -
+focused rather than solution -driven.  Greg Homstad  
+ 
+APPROVAL MATRIX  
+APPROVED BY  ROLE  APPROVAL DATE  SIGNATURE/eSIGNATURE  
+Finance IT Architect  Enterprise Data 
+Architecture (Finance)  9/12/2025   
+Finance Business Stakeholder  Business Stakeholder (Cost 
+Accounting / Controlling)  9/12/2025   
+ 
+ 
+DOCUMENT CONTROLS  
+CONTROL  DESCRIPTION  
+SYSTEM  SAP ERP Environment  
+RICEF/ OBJECT ID   
+PROCESS AREA  Finance – Controlling (Cost Center Reporting)  
+CHANGE TYPE  Report Field Visibility  
+USER STORY #   
+ 
+METHODOLOGY:  Agile 
+  
+   
+ 
+Table of Contents   
+1.0 INTRODUCTION  4 
+1.1 Purpose  4 
+2.0 PROJECT OVERVIEW  4 
+2.1 Objectives  4 
+2.2 Assumptions  4 
+2.3 Constraints  4 
+2.4 Risks  4 
+3.0 SUPPORTING DOCUMENTS  4 
+3.1 As Is  4 
+3.2 To Be  4 
+4.0 REQUIREMENTS  5 
+4.1 Business Rules/ Requirements  5 
+4.2 Functional Requirements  5 
+4.3 Stakeholder Requirements  5 
+4.4 solution Requirements  5 
+4.5 Non -Functional Requirements  5 
+4.6 Transition Requirements  6 
+4.7 Usability Requirements  6 
+4.8 Performance Requirements  6 
+4.9 Supportability Requirements  6 
+4.10 Security Requirements  6 
+4.11 Interface Requirements  6 
+4.12 Compliance Requirements  6 
+5.0 SUPPLEMENTAL DOCUMENTS  6 
+5.1 Traceability Matrix  6 
+APPENDIX A: REFERENCES  6 
+APPENDIX B: KEY TERMS  6 
+ 
+ 
+ 
+   
+ 
+1.0 INTRODUCTION  
+1.1 P urpose  
+The purpose of this document is to enable users to easily identify the external source system of financial postings directly within the 
+SAP cost center line -item report (KSB1). Currently, this information is only accessible by navigating into individual do cument 
+headers, which is time -consuming and inefficient.  
+ 
+Providing direct visibility into the external source identifier will reduce reconciliation effort, improve traceability, and allow 
+stakeholders to more efficiently reconcile SAP postings with external source systems.  
+2.0 PROJECT OVERVIEW  
+2.1 Objectives  
+• Specific:  Provide visibility into external source system identifiers within the KSB1 report to support financial reconciliation.  
+• Measurable:  Enable users to reconcile SAP postings without drilling into individual document headers.  
+• Attainable:  Business need can be met using information already available in SAP postings . 
+• Realistic : Business needs can be met using data already present in SAP financial documents.  
+• Time -bound:  Deliver reporting visibility by the end of Q4 FY2025.  
+ 
+2.2 Assumptions  
+External source identifiers are consistently populated in SAP document headers for relevant  postings.  
+Users have the required authorization to view cost center line items and related information . 
+ 
+2.3 Constraints  
+The reporting change must not degrade report performance or user experience .  
+The c hange must remain compatible with existing  SAP report ing structures .  
+ 
+2.4 Risks  
+If external source identifiers are inconsistently populated, reconciliation accuracy may be impacted . 
+Changes to how future external systems supply identifiers could reduce long -term reporting usefulness.   
+ 
+3.0 Supporting Documents  
+3.1 As Is  
+Currently, users are unable to view the external source identifier directly within the KSB1 report grid. To access this infor mation, 
+users must navigate through multiple SAP reporting and document display screens to view document header data.  
+ 
+This workflow requires repeated drill -down actions and is inefficient when reconciling large volumes of postings. The process 
+increases reconciliation time and introduces opportunities for user error.  
+ 
+Current workflow summary:  
+1. Execute an SAP report group to access cost center reporting.  
+2. Select a cost center and cost element.  
+3. Navigate into individual line items.  
+4. Open the associated financial document.  
+5. View document header information to identify the external source system.  
+ 
+This process is repetitive, time -consuming, and inefficient for high -volume reconciliation activities.  
+ 
+3.2 To Be  
+   
+ 
+Users will be able to view the external source identifier directly within the KSB1 report output without navigating into indi vidual 
+document headers.  
+ 
+With this improvement : 
+1. Users access the KSB1 report.  
+2. The report displays standard cost center line -item fields along with the external source identifier.  
+3. Reconciliation activities can be performed directly from the report view.  
+ 
+This change eliminates repetitive navigation into document headers, reduces reconciliation time for high -volume postings, and 
+improves transparency of financial data.  
+ 
+Note: Screenshots and system visuals have been removed from this anonymized version.  
+ 
+4.0 REQUIREMENTS  
+4.1 Business Rules/ Requirements  
+BRD ID Business Rule / Requirement  
+BR-001 Users must be able to view the external source identifier directly within the KSB1 cost center line -item report.  
+BR-002 Users must be able to identify the originating external source system for a posting without navigating into individual 
+SAP document headers.  
+BR-003 The solution must support efficient reconciliation of high -volume financial postings within standard reporting 
+workflows.  
+BR-004 The enhancement must improve transparency of financial posting  without altering existing posting logic or data values.  
+BR-005 The reporting change must preserve existing reconciliation, audit, and financial review processes.  
+BR-006 Users must be able to distinguish postings with missing or unpopulated external source identifiers.  
+ 
+4.2 Functional Requirements  
+FR ID  Functional Requirement  
+FR-001 The KSB1 report must display the external source identifier as a visible field within the report output.  
+FR-002 The external source identifier must align with the value stored at the SAP document header level.  
+FR-003 The report must continue to support existing filtering, sorting, and export capabilities.  
+FR-004 The report must display line items regardless of whether the external source identifier is populated.  
+ 
+4.3 Stakeholder Requirements  
+Business stakeholders require direct visibility into external source system identifiers within cost center line -item reporting to: 
+ 
+• Efficiently reconcile financial postings  
+• Reduce repetitive navigation into document headers  
+• Identify posting sources without manual investigation  
+• Increase confidence in reported financial da ta 
+ 
+4.4 solution Requirements  
+The solution must leverage existing SAP data elements and reporting capabilities to surface the external source identifier wi thin the 
+KSB1 report.  
+ 
+No new external data sources are required.  
+4.5 Non -Functional Requirements  
+The reporting enhancement must not introduce measurable performance degradation.  
+Report execution time must remain consistent with current baseline behavior.  
+The enhancement must not disrupt existing user workflows.  
+ 
+   
+ 
+4.6 Transition Requirements  
+The enhancement must be deployed without requiring user retraining.  
+Existing report variants and saved layouts must remain functional.  
+No data migration is required.  
+ 
+4.7 Usability Requirements  
+The external source identifier must be clearly labeled and readable within the report.  
+Field placement must align with existing reporting conventions.  
+The report must remain usable for high -volume reconciliation activities.  
+4.8 Performance Requirements  
+The addition of the external source identifier must not increase report execution time beyond acceptable thresholds  
+The report must continue to support high -volume data sets without degradation.  
+4.9 Supportability Requirements  
+The solution must be supportable using existing SAP support processes.  
+No new monitoring or support tooling is required.  
+Errors or inconsistencies in source identifiers must be traceable through existing support workflows.  
+4.10 Security Requirements  
+Access to the external source identifier must respect existing SAP authorization roles.  
+Users without authorization to view cost center line items must not gain access through this enhancement.  
+4.11 Interface Requirements  
+The improvement  must remain compatible with downstream reporting, exports, and integrations  
+No changes to inbound or outbound interfaces are required.  
+4.12 Compliance Requirements  
+The solution must comply with existing financial reporting and audit requirements.  
+The enhancement must not expose restricted or sensitive data beyond authorized users.  
+5.0 SUPPLEMENTAL DOCUMENTS  
+5.1 Traceability Matrix  
+Business 
+Requirement  Functional 
+Requirement  Priority  Test Case 
+ID Test Case Description  
+BR-001 FR-001 High  TC-001 Verify the external source identifier is visible in the KSB1 
+report.  
+BR-002 FR-001 High  TC-002 Verify users can identify posting source without navigating 
+to document headers.  
+BR-003 FR-003 High  TC-003 Verify filtering, sorting, and export functions remain 
+unchanged.  
+BR-004 FR-002 Medium  TC-004 Verify no posting values or accounting logic are altered.  
+BR-005 FR-003 Medium  TC-005 Verify reconciliation and audit workflows remain intact.  
+BR-006 FR-004 High  TC-006 Verify report behavior when external source identifier is 
+missing or unpopulated.  
+ 
+APPENDIX A: REFERENCES  
+Document Name  Description  
+Requirements Gathering Session  Internal meeting notes (anonymized)  
+Business Stakeholder Approval  Approval record (anonymized)  
+APPENDIX B: KEY TERMS  
+Term  Definition  
+   
+ 
+KSB1  SAP transaction used to display cost center line -item postings.  
+External Source Identifier  Identifier stored at the document header level indicating the originating external system for a 
+financial posting.  
+ 

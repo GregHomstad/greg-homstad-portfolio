@@ -5,23 +5,18 @@ import { useScrollAnimation } from "../../hooks/useScrollAnimation"
 const experience = [
     {
         company: "Tyson Foods",
-        role: "IT Product Owner · Financial Controlling & Costing",
-        description: "Owned SAP reporting, BOM platforms, and compliance initiatives; led ERP reconciliation improving data accuracy and audit reliability.",
-    },
-    {
-        company: "U.S. Department of Veterans Affairs",
-        role: "Systems Administrator",
-        description: "Supported secure enterprise systems in a federal environment; held Public Trust clearance and ensured compliance with government security controls.",
+        role: "IT Product Owner · Enterprise Systems",
+        description: "Leading enterprise BOM initiatives and cross-functional SAP S/4HANA reconciliations; delivered 95% reduction in data discrepancies.",
     },
     {
         company: "Field Nation",
         role: "IT Field Technician",
-        description: "Delivered 80+ infrastructure projects across 25+ sites with high first-time success; led complex deployments end-to-end.",
+        description: "Delivered 80+ infrastructure projects across 25+ sites with 98% first-time success for national retail and healthcare clients.",
     },
     {
         company: "Shine Solar",
         role: "IT Support Specialist",
-        description: "Supported 300+ users; authored IT policies and training that reduced repeat incidents and onboarding time.",
+        description: "Supported 300+ users; authored company-first IT operating manuals and technical onboarding programs.",
     },
 ]
 
@@ -50,10 +45,10 @@ export default function About() {
                             requirements become large operational and financial problems.
                         </p>
                         <p className="text-[0.95rem] text-[var(--muted)] leading-[1.9] font-light mb-8">
-                            I've since moved into requirements analysis, functional spec writing,
-                            and enterprise platform delivery. I bridge business needs with technical
+                            I bridge business requirements with technical
                             reality — turning stakeholder conversations into structured,
                             production-ready documentation that engineering teams can build from.
+                            I am currently open to new full-time, remote, or hybrid positions and relocate for the right role.
                         </p>
 
                         <Link to="/resume" className="btn-primary">

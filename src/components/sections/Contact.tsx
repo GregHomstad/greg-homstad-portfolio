@@ -29,17 +29,17 @@ export default function Contact() {
                     </p>
 
                     <p className="text-[0.8rem] text-[var(--faint)] mb-10 font-light">
-                        Based in Northwest Arkansas · Open to remote and hybrid opportunities
+                        Open to full-time, remote, hybrid, or relocation positions
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4">
-                        <a
-                            href="mailto:Greg.Homstad@outlook.com"
+                        <button
+                            onClick={() => window.location.href = `mailto:${["Greg", "Homstad", "outlook.com"].join(".").replace("Homstad.", "Homstad@")}`}
                             className="btn-primary"
                         >
                             <Mail size={15} />
                             Reach Out
-                        </a>
+                        </button>
                         <a
                             href="https://linkedin.com/in/GregHomstad"
                             target="_blank"
