@@ -7,7 +7,7 @@ export default function Hero() {
     return (
         <section
             ref={ref}
-            className={`relative min-h-screen flex items-center px-6 pt-28 pb-20 lg:pt-32 lg:pb-24 fade-up${isVisible ? " visible" : ""}`}
+            className={`relative min-h-[100dvh] flex items-center px-6 pt-28 pb-20 lg:pt-32 lg:pb-24 fade-up${isVisible ? " visible" : ""}`}
         >
             <div className="max-w-[1200px] mx-auto w-full">
                 {/* Label */}

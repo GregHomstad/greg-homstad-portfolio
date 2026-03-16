@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async"
 import { useParams, Link, Navigate } from "react-router-dom"
-import { ArrowLeft } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { useScrollAnimation } from "../hooks/useScrollAnimation"
 import { caseStudies } from "../data/caseStudies"
 
@@ -27,10 +27,14 @@ export default function CaseStudyDetail() {
             <article ref={ref} className={`min-h-screen pt-32 pb-32 px-6 fade-up${isVisible ? " visible" : ""}`}>
                 <div className="max-w-[900px] mx-auto">
 
-                    {/* Back */}
-                    <Link to="/case-studies" className="btn-text mb-10 inline-flex">
-                        <ArrowLeft size={14} /> Back to Work
-                    </Link>
+                    {/* Breadcrumb */}
+                    <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-[0.75rem] text-[var(--faint)] mb-8">
+                        <Link to="/" className="hover:text-[var(--muted)] transition-colors">Home</Link>
+                        <span>/</span>
+                        <Link to="/case-studies" className="hover:text-[var(--muted)] transition-colors">Work</Link>
+                        <span>/</span>
+                        <span className="text-[var(--muted)]">{study.title}</span>
+                    </nav>
 
                     {/* Header */}
                     <div className="flex items-center gap-3 mb-4">
@@ -155,6 +159,19 @@ export default function CaseStudyDetail() {
                             </div>
                         </section>
                     )}
+
+                    {/* CTA */}
+                    <div className="mt-20 pt-14 border-t border-[var(--border)]">
+                        <p className="text-[var(--muted)] text-[0.9rem] mb-6 font-light">Interested in working together?</p>
+                        <div className="flex flex-wrap gap-6">
+                            <Link to="/#contact" className="btn-primary px-8 py-3">
+                                Get in Touch <ArrowRight size={16} />
+                            </Link>
+                            <Link to="/case-studies" className="btn-text text-[0.9rem]">
+                                View All Work →
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </article>
         </>
