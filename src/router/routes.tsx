@@ -1,34 +1,30 @@
-﻿import { Routes, Route } from "react-router-dom"
+﻿import { lazy, Suspense } from "react"
+import { Routes, Route } from "react-router-dom"
+import LoadingScreen from "../components/effects/LoadingScreen"
 
-import Home from "../pages/Home"
-import CaseStudies from "../pages/CaseStudies"
-import CaseStudyDetail from "../pages/CaseStudyDetail"
-import Resources from "../pages/Resources"
-import ResourceDetail from "../pages/ResourceDetail"
-import Templates from "../pages/Templates" // 👈 ADD THIS
-import Resume from "../pages/Resume"
+const Home = lazy(() => import("../pages/Home"))
+const CaseStudies = lazy(() => import("../pages/CaseStudies"))
+const CaseStudyDetail = lazy(() => import("../pages/CaseStudyDetail"))
+const Resume = lazy(() => import("../pages/Resume"))
+const NotFound = lazy(() => import("../pages/NotFound"))
 
 export default function AppRoutes() {
     return (
-        <Routes>
-            {/* Home */}
-            <Route path="/" element={<Home />} />
+        <Suspense fallback={<LoadingScreen />}>
+            <Routes>
+                {/* Home */}
+                <Route path="/" element={<Home />} />
 
-            {/* Resume */}
-            <Route path="/resume" element={<Resume />} />
+                {/* Resume */}
+                <Route path="/resume" element={<Resume />} />
 
-            {/* Case Studies */}
-            <Route path="/case-studies" element={<CaseStudies />} />
-            <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
+                {/* Case Studies */}
+                <Route path="/case-studies" element={<CaseStudies />} />
+                <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
 
-            {/* Resources */}
-            <Route path="/resources" element={<Resources />} />
-
-            {/* Templates MUST come before :slug */}
-            <Route path="/resources/templates" element={<Templates />} />
-
-            {/* Resource detail (articles, guides) */}
-            <Route path="/resources/:slug" element={<ResourceDetail />} />
-        </Routes>
+                {/* 404 */}
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+        </Suspense>
     )
 }

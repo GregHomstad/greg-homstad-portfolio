@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react"
-import React from "react"
 
 export default function LoadingScreen() {
-    const [progress, setProgress] = useState(0)
-    const [isComplete, setIsComplete] = useState(false)
+    const alreadyShown = sessionStorage.getItem("loadingShown") === "1"
+    const [progress, setProgress] = useState(alreadyShown ? 100 : 0)
+    const [isComplete, setIsComplete] = useState(alreadyShown)
 
     useEffect(() => {
+        if (alreadyShown) return
         const timer = setInterval(() => {
             setProgress(p => {
                 if (p >= 100) {
                     clearInterval(timer)
+                    sessionStorage.setItem("loadingShown", "1")
                     setTimeout(() => setIsComplete(true), 500)
                     return 100
                 }
@@ -18,7 +20,7 @@ export default function LoadingScreen() {
         }, 150)
 
         return () => clearInterval(timer)
-    }, [])
+    }, [alreadyShown])
 
     if (isComplete) return null
 
@@ -33,7 +35,7 @@ export default function LoadingScreen() {
                 {/* Active Progress */}
                 <div
                     className="absolute bottom-0 left-0 h-[1px] bg-[var(--accent)] transition-all duration-300 ease-out"
-                    style={{ width: `${progress}%` } as React.CSSProperties}
+                    style={{ width: `${progress}%` }}
                 />
             </div>
             <div className="mt-12 text-label text-[10px] opacity-30 font-light tracking-[0.3em]">

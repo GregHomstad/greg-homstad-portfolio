@@ -350,18 +350,6 @@ body::after {
 }
 
 /* -------------------------------------------------------
-   IMAGE TREATMENT — editorial photo style
-------------------------------------------------------- */
-.editorial-photo {
-    filter: grayscale(20%) contrast(1.05);
-    transition: filter 600ms ease;
-}
-
-.editorial-photo:hover {
-    filter: grayscale(0%) contrast(1);
-}
-
-/* -------------------------------------------------------
    MARQUEE — smooth infinite scroll
 ------------------------------------------------------- */
 @keyframes marquee {

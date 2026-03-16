@@ -1,15 +1,13 @@
 import { Helmet } from "react-helmet-async"
 import Hero from "../components/sections/Hero"
 import FeaturedCaseStudies from "../components/sections/FeaturedCaseStudies"
-import WhatIDo from "../components/sections/WhatIDo"
-import HowIThink from "../components/sections/HowIThink"
 import About from "../components/sections/About"
 import Contact from "../components/sections/Contact"
 import { SITE_URL, SITE_OG_IMAGE, SITE_TWITTER_HANDLE } from "../seo"
 
 export default function Home() {
-    const title = "Greg Homstad | Technical Business Analyst"
-    const desc = "Enterprise systems delivery — SAP, ERP, financial platforms. Requirements analysis, functional specs, and cross-system validation."
+    const title = "Greg Homstad | Technical Product Owner"
+    const desc = "Enterprise systems delivery — SAP, ERP, financial platforms. Product ownership, requirements analysis, and cross-system validation."
 
     return (
         <>
@@ -30,8 +28,6 @@ export default function Home() {
 
             <Hero />
             <FeaturedCaseStudies />
-            <WhatIDo />
-            <HowIThink />
             <About />
             <Contact />
         </>

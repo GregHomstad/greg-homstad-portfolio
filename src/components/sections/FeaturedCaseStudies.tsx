@@ -21,9 +21,9 @@ export default function FeaturedCaseStudies() {
                             Enterprise Case Studies
                         </h2>
                         <p className="text-[0.95rem] text-[var(--muted)] leading-[1.8] font-light max-w-[480px]">
-                            Enterprise initiatives spanning SAP reporting, financial compliance,
-                            and platform modernization. End-to-end ownership from requirements
-                            capture through delivery validation.
+                            Enterprise initiatives spanning data reconciliation, SAP reporting,
+                            product ownership, and financial compliance. End-to-end ownership
+                            from requirements capture through delivery validation.
                         </p>
                     </div>
 

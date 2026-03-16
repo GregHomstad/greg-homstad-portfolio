@@ -34,7 +34,7 @@ export default function About() {
                             id="about-heading"
                             className="text-display text-[clamp(2rem,4vw,3rem)] text-[var(--text)] mb-8"
                         >
-                            Technical Business Analyst,<br />
+                            Technical Product Owner,<br />
                             Enterprise Systems
                         </h2>
 

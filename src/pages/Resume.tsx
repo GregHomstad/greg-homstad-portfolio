@@ -1,18 +1,30 @@
 import { Helmet } from "react-helmet-async"
 import { FileText } from "lucide-react"
 import { useScrollAnimation } from "../hooks/useScrollAnimation"
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import { SITE_URL, SITE_OG_IMAGE, SITE_TWITTER_HANDLE } from "../seo"
 
 export default function Resume() {
     const { ref, isVisible } = useScrollAnimation()
+    const navigate = useNavigate()
     const title = "Resume | Greg Homstad"
-    const desc = "Download the professional resume of Greg Homstad, Technical Product Owner & Business Analyst."
+    const desc = "Download the professional resume of Greg Homstad, Technical Product Owner specializing in enterprise systems and SAP delivery."
 
     return (
         <>
             <Helmet>
                 <title>{title}</title>
                 <meta name="description" content={desc} />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={`${SITE_URL}/resume`} />
+                <meta property="og:title" content={title} />
+                <meta property="og:description" content={desc} />
+                <meta property="og:image" content={SITE_OG_IMAGE} />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:site" content={SITE_TWITTER_HANDLE} />
+                <meta name="twitter:title" content={title} />
+                <meta name="twitter:description" content={desc} />
+                <meta name="twitter:image" content={SITE_OG_IMAGE} />
             </Helmet>
 
             <section ref={ref} className={`min-h-[85vh] flex items-center justify-center px-6 fade-up${isVisible ? ' visible' : ''}`}>
@@ -35,9 +47,17 @@ export default function Resume() {
                             View & Download PDF <FileText size={20} />
                         </a>
 
-                        <Link to="/#contact" className="btn-text group text-[0.9rem]">
+                        <button
+                            onClick={() => {
+                                navigate("/")
+                                setTimeout(() => {
+                                    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+                                }, 100)
+                            }}
+                            className="btn-text group text-[0.9rem]"
+                        >
                             Looking to collaborate? <span className="group-hover:translate-x-1 transition-transform inline-block ml-1 underline decoration-[var(--accent)] underline-offset-4">Get in touch →</span>
-                        </Link>
+                        </button>
                     </div>
                 </div>
             </section>

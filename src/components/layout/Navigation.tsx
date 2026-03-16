@@ -5,7 +5,6 @@ import { Menu, X } from "lucide-react"
 const links = [
     { to: "/", label: "Home" },
     { to: "/case-studies", label: "Work" },
-    { to: "/resources", label: "Resources" },
     { to: "/resume", label: "Resume" },
 ]
 
@@ -27,7 +26,7 @@ export default function Navigation() {
             <nav className="max-w-[1200px] mx-auto flex items-center justify-between px-5 py-4 md:px-6 md:py-5">
                 <NavLink
                     to="/"
-                    className="font-['DM_Serif_Display'] text-[1.1rem] text-[var(--text)] tracking-[-0.01em] hover:text-[var(--accent)] transition-colors duration-300"
+                    className="text-display text-[1.1rem] text-[var(--text)] hover:text-[var(--accent)] transition-colors duration-300"
                 >
                     Greg Homstad
                 </NavLink>

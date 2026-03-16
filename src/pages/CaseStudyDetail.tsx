@@ -1,4 +1,4 @@
-﻿import { Helmet } from "react-helmet-async"
+import { Helmet } from "react-helmet-async"
 import { useParams, Link, Navigate } from "react-router-dom"
 import { ArrowRight } from "lucide-react"
 import { useScrollAnimation } from "../hooks/useScrollAnimation"
@@ -15,6 +15,8 @@ export default function CaseStudyDetail() {
         return <Navigate to="/case-studies" replace />
     }
 
+    const summaryImpacts = study.impact.slice(0, 3)
+
     return (
         <>
             <Helmet>
@@ -22,8 +24,8 @@ export default function CaseStudyDetail() {
                 <meta name="description" content={study.overview} />
             </Helmet>
 
-            <article ref={ref} className={`min-h-screen pt-28 pb-32 px-6 fade-up${isVisible ? ' visible' : ''}`}>
-                <div className="max-w-[800px] mx-auto">
+            <article ref={ref} className={`min-h-screen pt-32 pb-32 px-6 fade-up${isVisible ? " visible" : ""}`}>
+                <div className="max-w-[900px] mx-auto">
 
                     {/* Breadcrumb */}
                     <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-[0.75rem] text-[var(--faint)] mb-8">
@@ -35,32 +37,101 @@ export default function CaseStudyDetail() {
                     </nav>
 
                     {/* Header */}
-                    <div className="text-label mb-4">Case Study</div>
-                    <h1 className="text-display text-[clamp(2rem,5vw,3.5rem)] text-[var(--text)] mb-4">
+                    <div className="flex items-center gap-3 mb-4">
+                        <div className="text-label">Case Study</div>
+                        <span className="rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10 px-2.5 py-0.5 text-[0.65rem] uppercase tracking-[0.12em] text-[var(--accent)]">
+                            {study.methodology}
+                        </span>
+                    </div>
+                    <h1 className="text-display text-[clamp(2.2rem,5vw,3.4rem)] text-[var(--text)] mb-4">
                         {study.title}
                     </h1>
-                    <p className="text-[1.05rem] text-[var(--muted)] leading-[1.7] font-light mb-16">
+                    <p className="text-[1.02rem] text-[var(--muted)] leading-[1.8] font-light mb-10">
                         {study.overview}
                     </p>
 
+                    {/* Summary band */}
+                    <section className="mb-16 rounded-2xl border border-[var(--border)] bg-[var(--surface)]/60 px-6 py-6 md:px-7 md:py-7">
+                        <div className="grid gap-6 md:grid-cols-[minmax(0,1.5fr)_minmax(0,1.5fr)] items-start">
+                            <div>
+                                <div className="text-label mb-3">Impact Highlights</div>
+                                <ul className="space-y-2.5">
+                                    {summaryImpacts.map((item) => (
+                                        <li key={item} className="flex items-start gap-2.5 text-[0.88rem] text-[var(--muted)] font-light leading-[1.6]">
+                                            <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[var(--accent)]" />
+                                            {item}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <div className="md:pl-4 border-t md:border-t-0 md:border-l border-[var(--border)]/60 pt-4 md:pt-0 md:ml-2">
+                                {study.stakeholders && study.stakeholders.length > 0 && (
+                                    <div className="mb-4">
+                                        <div className="text-label mb-3">Stakeholders</div>
+                                        <ul className="space-y-1.5">
+                                            {study.stakeholders.map((s) => (
+                                                <li key={s} className="flex items-center gap-2 text-[0.84rem] text-[var(--muted)] font-light">
+                                                    <span className="h-1 w-1 shrink-0 rounded-full bg-[var(--accent)]" />
+                                                    {s}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
+                                {study.tags && study.tags.length > 0 && (
+                                    <div>
+                                        <div className="text-label mb-3">Systems & Domains</div>
+                                        <div className="flex flex-wrap gap-2">
+                                            {study.tags.map((tag) => (
+                                                <span
+                                                    key={tag}
+                                                    className="rounded-full border border-[var(--border)] bg-black/10 px-2.5 py-1 text-[0.7rem] uppercase tracking-[0.12em] text-[var(--muted)]"
+                                                >
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </section>
+
                     {/* Problem / Challenge */}
-                    <div className="mb-14">
+                    <section className="mb-14">
                         <h2 className="text-label mb-4">Challenge</h2>
                         <p className="text-[0.95rem] text-[var(--muted)] leading-[1.9] font-light">
                             {study.problem}
                         </p>
-                    </div>
+                    </section>
 
-                    {/* Solution / Approach */}
-                    <div className="mb-14">
+                    {/* Approach */}
+                    <section className="mb-14">
                         <h2 className="text-label mb-4">Approach</h2>
-                        <p className="text-[0.95rem] text-[var(--muted)] leading-[1.9] font-light">
-                            {study.solution}
+                        <p className="text-[0.95rem] text-[var(--muted)] leading-[1.9] font-light mb-6">
+                            {study.approach}
                         </p>
-                    </div>
+                        {study.knowledgeAreas && study.knowledgeAreas.length > 0 && (
+                            <div>
+                                <div className="text-[0.72rem] uppercase tracking-[0.14em] text-[var(--muted)]/60 mb-2.5">
+                                    BABOK Knowledge Areas Applied
+                                </div>
+                                <div className="flex flex-wrap gap-2">
+                                    {study.knowledgeAreas.map((area) => (
+                                        <span
+                                            key={area}
+                                            className="rounded-full border border-[var(--border)] px-2.5 py-1 text-[0.7rem] text-[var(--muted)] font-light"
+                                        >
+                                            {area}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </section>
 
                     {/* Impact */}
-                    <div className="mb-14">
+                    <section className="mb-14">
                         <h2 className="text-label mb-4">Impact</h2>
                         <ul className="space-y-3">
                             {study.impact.map((item) => (
@@ -70,26 +141,25 @@ export default function CaseStudyDetail() {
                                 </li>
                             ))}
                         </ul>
-                    </div>
+                    </section>
 
-                    {/* Embedded PDF Viewers */}
-                    {study.embeddedPdfs && study.embeddedPdfs.length > 0 && (
-                        <div className="mb-14 space-y-16">
-                            {study.embeddedPdfs.map((pdf, idx) => (
-                                <div key={idx}>
-                                    <h2 className="text-label mb-6">{pdf.title}</h2>
-                                    <div className="w-full h-[70vh] min-h-[600px] max-h-[1000px] bg-[var(--surface)] border border-[var(--border)] overflow-hidden rounded">
-                                        <iframe
-                                            src={`${pdf.href}#view=Fit`}
-                                            className="w-full h-full"
-                                            title={pdf.title}
-                                            sandbox="allow-same-origin allow-scripts"
-                                        />
-                                    </div>
+                    {/* Artifacts Produced */}
+                    {study.artifacts && study.artifacts.length > 0 && (
+                        <section className="mb-14">
+                            <h2 className="text-label mb-4">Artifacts Produced</h2>
+                            <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)]/60 px-6 py-5 md:px-7 md:py-6">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    {study.artifacts.map((artifact) => (
+                                        <div key={artifact} className="flex items-center gap-3 text-[0.88rem] text-[var(--muted)] font-light">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] shrink-0" />
+                                            {artifact}
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
-                        </div>
+                            </div>
+                        </section>
                     )}
+
                     {/* CTA */}
                     <div className="mt-20 pt-14 border-t border-[var(--border)]">
                         <p className="text-[var(--muted)] text-[0.9rem] mb-6 font-light">Interested in working together?</p>
