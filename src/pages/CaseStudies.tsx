@@ -8,7 +8,7 @@ import { caseStudies } from "../data/caseStudies"
 export default function CaseStudies() {
     const { ref, isVisible } = useScrollAnimation()
     const title = "Work | Greg Homstad"
-    const desc = "Enterprise case studies — SAP reporting, financial compliance, platform modernization."
+    const desc = "Enterprise case studies — data reconciliation, SAP reporting, product ownership, and financial compliance."
 
     return (
         <>

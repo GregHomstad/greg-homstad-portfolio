@@ -6,8 +6,8 @@ import Contact from "../components/sections/Contact"
 import { SITE_URL, SITE_OG_IMAGE, SITE_TWITTER_HANDLE } from "../seo"
 
 export default function Home() {
-    const title = "Greg Homstad | Technical Business Analyst"
-    const desc = "Enterprise systems delivery — SAP, ERP, financial platforms. Requirements analysis, functional specs, and cross-system validation."
+    const title = "Greg Homstad | Technical Product Owner"
+    const desc = "Enterprise systems delivery — SAP, ERP, financial platforms. Product ownership, requirements analysis, and cross-system validation."
 
     return (
         <>
